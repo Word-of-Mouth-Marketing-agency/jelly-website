@@ -16,7 +16,7 @@ export default async function LocaleLayout({
     <div dir={dir}>
       <Header />
       <main>{children}</main>
-      <Footer />
+      <Footer locale={locale} />
       <WhatsAppButton />
     </div>
   );
