@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+/* ─── Jelly Design Tokens ─────────────────────────────────────────────────── */
+
+@theme {
+  /* Colors */
+  --color-outline: #7c785f;
+  --color-secondary-fixed: #f0e588;
+  --color-surface-container-high: #eee8d5;
+  --color-on-tertiary: #ffffff;
+  --color-on-primary-fixed-variant: #4e4800;
+  --color-error-container: #ffdad6;
+  --color-error: #ba1a1a;
+  --color-surface-tint: #686000;
+  --color-tertiary-fixed: #37fafd;
+  --color-secondary-container: #ede285;
+  --color-tertiary: #00696b;
+  --color-on-primary: #ffffff;
+  --color-surface-dim: #e0dac7;
+  --color-on-primary-container: #706800;
+  --color-on-background: #1e1c10;
+  --color-on-tertiary-fixed: #002020;
+  --color-primary-fixed: #f8e600;
+  --color-surface-container-highest: #e8e2cf;
+  --color-tertiary-fixed-dim: #00dcdf;
+  --color-surface-bright: #ffffff;
+  --color-secondary: #67600f;
+  --color-on-secondary-fixed-variant: #4e4800;
+  --color-on-surface: #1e1c10;
+  --color-background: #ffffff;
+  --color-surface-variant: #e8e2cf;
+  --color-secondary-fixed-dim: #d3c96f;
+  --color-on-secondary-container: #6c6414;
+  --color-inverse-primary: #d9c900;
+  --color-surface-container: #f4f4f4;
+  --color-on-secondary-fixed: #1f1c00;
+  --color-on-error-container: #93000a;
+  --color-primary-container: #fbe902;
+  --color-primary-fixed-dim: #d9c900;
+  --color-surface-container-low: #ffffff;
+  --color-on-primary-fixed: #1f1c00;
+  --color-inverse-surface: #333124;
+  --color-on-secondary: #ffffff;
+  --color-surface: #ffffff;
+  --color-outline-variant: #ccc7ab;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-error: #ffffff;
+  --color-inverse-on-surface: #f7f1dd;
+  --color-on-tertiary-fixed-variant: #004f51;
+  --color-on-surface-variant: #4a4732;
+  --color-tertiary-container: #4ffcff;
+  --color-primary: #686000;
+  --color-on-tertiary-container: #007274;
+  --color-brand-blue: #0066EE;
+  --color-brand-cyan: #00FFFF;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Spacing */
+  --spacing-margin-desktop: 64px;
+  --spacing-gutter: 24px;
+  --spacing-base: 8px;
+  --spacing-margin-mobile: 20px;
+  --spacing-section-gap: 80px;
+
+  /* Border Radius */
+  --radius-DEFAULT: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-full: 9999px;
+
+  /* Font Family */
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-body-lg: "Plus Jakarta Sans", sans-serif;
+  --font-body-md: "Plus Jakarta Sans", sans-serif;
+  --font-label-sm: "Plus Jakarta Sans", sans-serif;
+  --font-label-lg: "Plus Jakarta Sans", sans-serif;
+  --font-headline-lg: "Plus Jakarta Sans", sans-serif;
+  --font-headline-md: "Plus Jakarta Sans", sans-serif;
+  --font-display-lg: "Plus Jakarta Sans", sans-serif;
+
+  /* Font Sizes */
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 28px;
+  --text-body-lg--font-weight: 400;
+
+  --text-label-sm: 12px;
+  --text-label-sm--line-height: 16px;
+  --text-label-sm--font-weight: 700;
+
+  --text-headline-lg: 32px;
+  --text-headline-lg--line-height: 40px;
+  --text-headline-lg--font-weight: 700;
+
+  --text-label-lg: 14px;
+  --text-label-lg--line-height: 20px;
+  --text-label-lg--letter-spacing: 0.05em;
+  --text-label-lg--font-weight: 600;
+
+  --text-display-lg: 48px;
+  --text-display-lg--line-height: 56px;
+  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-lg--font-weight: 800;
+
+  --text-headline-md: 24px;
+  --text-headline-md--line-height: 32px;
+  --text-headline-md--font-weight: 700;
+
+  --text-body-md: 16px;
+  --text-body-md--line-height: 24px;
+  --text-body-md--font-weight: 400;
+}
+
+/* ─── Custom Utilities ────────────────────────────────────────────────────── */
+
+@utility max-w-container-max {
+  max-width: 1280px;
+}
+
+/* ─── Custom CSS Classes ──────────────────────────────────────────────────── */
+
+@layer utilities {
+  .sticker-border {
+    border: 2px solid #67600f;
+  }
+
+  .active-nav-border {
+    border-bottom: 4px solid #686000;
+  }
+}
+
+/* ─── Marquee Animations ──────────────────────────────────────────────────── */
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes scroll-reverse {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+@utility animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+@utility animate-scroll-reverse {
+  animation: scroll-reverse 30s linear infinite;
+}
+
+/* ─── Base Styles ─────────────────────────────────────────────────────────── */
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  background-color: #ffffff;
+  color: #1e1c10;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}

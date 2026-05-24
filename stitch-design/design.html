@@ -1,0 +1,429 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SockJoy | Socks that make you smile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#7c785f",
+                        "secondary-fixed": "#f0e588",
+                        "surface-container-high": "#eee8d5",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#4e4800",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#686000",
+                        "tertiary-fixed": "#37fafd",
+                        "secondary-container": "#ede285",
+                        "tertiary": "#00696b",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#e0dac7",
+                        "on-primary-container": "#706800",
+                        "on-background": "#1e1c10",
+                        "on-tertiary-fixed": "#002020",
+                        "primary-fixed": "#f8e600",
+                        "surface-container-highest": "#e8e2cf",
+                        "tertiary-fixed-dim": "#00dcdf",
+                        "surface-bright": "#ffffff",
+                        "secondary": "#67600f",
+                        "on-secondary-fixed-variant": "#4e4800",
+                        "on-surface": "#1e1c10",
+                        "background": "#ffffff",
+                        "surface-variant": "#e8e2cf",
+                        "secondary-fixed-dim": "#d3c96f",
+                        "on-secondary-container": "#6c6414",
+                        "inverse-primary": "#d9c900",
+                        "surface-container": "#f4f4f4",
+                        "on-secondary-fixed": "#1f1c00",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#fbe902",
+                        "primary-fixed-dim": "#d9c900",
+                        "surface-container-low": "#ffffff",
+                        "on-primary-fixed": "#1f1c00",
+                        "inverse-surface": "#333124",
+                        "on-secondary": "#ffffff",
+                        "surface": "#ffffff",
+                        "outline-variant": "#ccc7ab",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#f7f1dd",
+                        "on-tertiary-fixed-variant": "#004f51",
+                        "on-surface-variant": "#4a4732",
+                        "tertiary-container": "#4ffcff",
+                        "primary": "#686000",
+                        "on-tertiary-container": "#007274",
+                        "brand-blue": "#0066EE",
+                        "brand-cyan": "#00FFFF"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "margin-mobile": "20px",
+                        "section-gap": "80px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "label-lg": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .sticker-border {
+            border: 2px solid #67600f;
+        }
+        .active-nav-border {
+            border-bottom: 4px solid #686000;
+        }
+        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        @keyframes scroll-reverse { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+        .animate-scroll { animation: scroll 30s linear infinite; }
+        .animate-scroll-reverse { animation: scroll-reverse 30s linear infinite; }
+    </style>
+</head>
+<body class="bg-white text-on-background font-body-md overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="bg-white w-full border-on-surface border-b">
+<div class="bg-[#0066EE] text-white text-center py-2 px-4 font-label-lg text-label-lg">
+            Free Standard Shipping on Orders $75+
+        </div>
+<nav class="max-w-container-max mx-auto px-margin-desktop py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-8 w-full md:w-auto justify-between md:justify-start">
+<a class="font-display-lg text-headline-lg font-black text-on-surface" href="#">Jelly</a>
+<div class="hidden md:flex gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-lg text-label-lg" href="#">Men</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-lg text-label-lg" href="#">Women</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-lg text-label-lg" href="#">Kids</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-lg text-label-lg" href="#">Gifting</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-lg text-label-lg" href="#">About</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-lg text-label-lg" href="#">Contact</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<input class="bg-surface-container rounded-full px-6 py-2 border-2 border-outline focus:outline-none focus:ring-2 focus:ring-primary w-48 lg:w-64" placeholder="Search..." type="text">
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+</div>
+<div class="flex items-center gap-4"><button class="flex items-center gap-1 hover:scale-105 transition-transform font-label-lg text-label-lg text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="language">public</span>
+<span class="">EN</span>
+</button>
+<button class="hover:scale-105 transition-transform"><span class="material-symbols-outlined" data-icon="person">person</span></button>
+<button class="hover:scale-105 transition-transform"><span class="material-symbols-outlined" data-icon="favorite">favorite</span></button>
+<button class="hover:scale-105 transition-transform relative">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="absolute -top-1 -right-1 bg-primary-container text-on-primary-container text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">0</span>
+</button>
+</div>
+</div>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 items-center mb-0 mt-0">
+<div class="space-y-8 animate-fade-in px-margin-desktop">
+<h1 class="font-display-lg text-display-lg text-on-surface max-w-md">Socks that make you smile</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">Supportive layers with our comfortable materials. Socks you need and make you smile. Experience the joy of walking on clouds.</p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary-container text-on-primary-container px-8 py-4 rounded-full font-label-lg text-label-lg sticker-border hover:scale-105 transition-all active:scale-95">Shop Now</button>
+<button class="bg-white text-on-surface-variant px-8 py-4 rounded-full font-label-lg text-label-lg sticker-border hover:scale-105 transition-all active:scale-95">Explore Collection</button>
+</div>
+</div>
+<div class="relative overflow-hidden h-full w-full">
+<img class="w-full h-full object-cover" data-alt="A dynamic lifestyle shot of a person sitting on a yellow chair, wearing bright, multi-colored striped socks and casual shoes." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGO72FJS633FWIh4tMHr48y9dv50QqIgoLT6Qd5En6M0w2M0_jdcVktekLnsZITAul-AM2Yn09ZWn4GU0mMSFXZ3tc7mykUklM5PNO3HK5Gq2hDUWiXQjYa58hjNqsbzXyVeTyXxtKjFH8M7jHcybGS3eZcAZpdkdnn6mNRU32KwutSvarDc05rJW08WakUPzRriyaFX4j69F41lAAC__BVhSJFRFkPFM-5KOIzNM-9gsbB26MeXiUZnIAsAkEyNAyHTxAYQ_9NWk">
+</div>
+</section>
+<section class="w-full bg-primary-fixed overflow-hidden whitespace-nowrap py-4 border-y-2 border-black">
+<div class="inline-block animate-[scroll_20s_linear_infinite] px-4 font-display-lg text-headline-md font-black text-black uppercase">
+                SOCKS THAT MAKE YOU SMILE ★ STEP INTO JOY ★ COMFORT IN EVERY COLOR ★ SOCKS THAT MAKE YOU SMILE ★ STEP INTO JOY ★ COMFORT IN EVERY COLOR ★ SOCKS THAT MAKE YOU SMILE ★ STEP INTO JOY ★ COMFORT IN EVERY COLOR ★
+            </div>
+</section>
+<!-- Category Row -->
+<section class="max-w-container-max mx-auto px-margin-desktop mb-20 pt-16">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<div class="group cursor-pointer">
+<div class="relative rounded-2xl overflow-hidden sticker-border mb-4 aspect-video">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFwEOYS-Dj5sZwgZ7Vxgk1GZwFBE6igBiYiL6mY52rGAMqvBBITQJRlZWKRMZxhBhajbh_M8vctZ-semaoPveefl-eeCz2oMGYNPqSnqJS92yNa-F3OZvhYEXzzJuzWVScBi_XVqNV6cOe-VxyQw8dTkRJ0sW9v_b790L7HWCne2inWuhfXfNe7m4OQCvy2KtSZzPDWy0WXlB21K2ArBcmG8Yfvq4fNM0WPAIna_apG2DYl6b9JPtjUF-awM8qhZ1Mw_p9eg61oZg">
+</div>
+<h3 class="font-headline-md text-headline-md text-center">Men</h3>
+</div>
+<div class="group cursor-pointer">
+<div class="relative rounded-2xl overflow-hidden sticker-border mb-4 aspect-video">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAH8wIiREfJpU9x7oLN8pHfMfI6mzwf_pQmkd7jKooVP5BfSI-F6rW8km1BGcRxsBtUL6MZl-rZAd2vOq7j-UiKIwQQeyHPWs4YyT2Jw3_VQIGWIhffhyXvZGweWsPvYw4fEYHhCUbEEIv5nVABW37XHSQrsuETPH1_hqNUTg-pr_O3Nf48DGY6TDGp2VfEP_XgbpM0W6lErK7Vtdwq-7JB2ko3eW2B232IEOqVQOolz9-2Hy28fZ5ZCsUifwuEKRChuMfuieStDqY">
+</div>
+<h3 class="font-headline-md text-headline-md text-center">Women</h3>
+</div>
+<div class="group cursor-pointer">
+<div class="relative rounded-2xl overflow-hidden sticker-border mb-4 aspect-video">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVfKxGfgPtnh1z0fvReqyUuJc9F1GPO3hRwRIHHdtrKpt9pTSCgm8Zer5_bxkd5sS8F7mcFZSt7hAFeLx73JzCGTDkJ2554J6wXcw6FDys7mhBLGylpOOT-hIzkuq57MNTv1h6qD02WLHJrYEfsNGrVc-kNhUX3QGfScvVMImzdqM_aBX5A7hKvL64NpnPM5pg3HXYMMNmY_Wv-QLrjEuOsh9AXUdNoJYlxBIUgPDgjx_sHXPMRpRemepPprMVa4rH_HlG4k4eWnI">
+</div>
+<h3 class="font-headline-md text-headline-md text-center">Kids</h3>
+</div>
+<div class="group cursor-pointer">
+<div class="relative rounded-2xl overflow-hidden sticker-border mb-4 aspect-video">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWzg6kz1LDMv9aoHMD0Qt_j7D6SKwKeKkPSH6EpGTY2bbGtXAx9LKOLy5OmmhHC1ypFh8gFEjU80d-JddYjTADhPcVAlPfu1SjLTJUxPWtgTYo375xgch8Oz8bizMbfXNpk46rtFyNX_EyGyunyRIYkLM3n-Iy2q2GChNmSUN5cxjbLK6nSNWZkWCkscaqeRxGa9FKseEWiEYb5MwVQG6P0MtHniEMOfCkCXnw3JhnRQ5NcFNhhnC8GAmS-RCUlEQTpzmmSp4PGe4">
+</div>
+<h3 class="font-headline-md text-headline-md text-center">Unisex</h3>
+</div>
+</div>
+</section>
+<!-- New Arrivals Section -->
+<section class="max-w-container-max mx-auto px-margin-desktop mb-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-5 gap-gutter">
+<div class="md:pt-12">
+<h2 class="font-headline-lg text-headline-lg mb-6">New Arrivals</h2>
+<button class="bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-label-lg text-label-lg sticker-border hover:scale-105 transition-all">Shop Now</button>
+</div>
+<!-- Product Cards -->
+<div class="bg-white rounded-2xl p-4 sticker-border group">
+<div class="relative aspect-square mb-4 bg-gray-50 rounded-xl overflow-hidden">
+<button class="absolute top-2 right-2 z-10 p-2 bg-white rounded-full shadow-md hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+</button>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida/ADBb0ugypeoAvuh7Sy4YVmlzBvpbNR_Pr5R6MO9luEHILTStVHhmRurpyK8Bdjtws7m3in29HK7s4yXKfW079gf5HCAnJQzLmyIfYDlnbu2BPbcKJrEmXhRwBqdnNMOMqNp-cwgFGl21wO_-qN5TS91m79LweojtIfVIUkMTSCE40pDVAkxs3w3aT9wWh2y--34eIFWV3gHq8v1z3IQEX_H0jBKIPBZ5c9JOLPLo5SIQbw8vooc5NpygR9GmkFs">
+</div>
+<h4 class="font-body-lg text-body-lg mb-1 truncate">Donn Baby Sock</h4>
+<div class="inline-block px-3 py-1 bg-brand-cyan rounded-full font-bold text-label-sm mb-4">$23.00</div>
+<button class="w-full bg-primary-container text-on-primary-container py-2 rounded-full font-label-lg text-label-lg sticker-border hover:bg-primary-fixed-dim transition-colors">Add to Cart</button>
+</div>
+<div class="bg-white rounded-2xl p-4 sticker-border group">
+<div class="relative aspect-square mb-4 bg-gray-50 rounded-xl overflow-hidden">
+<button class="absolute top-2 right-2 z-10 p-2 bg-white rounded-full shadow-md hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+</button>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida/ADBb0uiyKT7KntdWhBh8xkUOeshpMiVakXYlDmToBuDVU3QllGUMSsCYdS9Hmu63bUluCa_6iNwX81ekCfrjkoAuWJixGQR8Vjrk8UYOkhfTkaNc0HVR9klXzZSdok1TiMJXF9LZ20jehQaSKAPKYSEOdQdtnBNCmssd2gb7QcatnW6xJlp-ENGWjec3kFd0VyyARMTuOfOpdYETGqd58iLi4w31h_rlLavxTSK6u4TFh0TTQ3VCaY2vwBTDChI">
+</div>
+<h4 class="font-body-lg text-body-lg mb-1 truncate">Doha Bawl Sock</h4>
+<div class="inline-block px-3 py-1 bg-brand-cyan rounded-full font-bold text-label-sm mb-4">$25.00</div>
+<button class="w-full bg-primary-container text-on-primary-container py-2 rounded-full font-label-lg text-label-lg sticker-border hover:bg-primary-fixed-dim transition-colors">Add to Cart</button>
+</div>
+<div class="bg-white rounded-2xl p-4 sticker-border group">
+<div class="relative aspect-square mb-4 bg-gray-50 rounded-xl overflow-hidden">
+<button class="absolute top-2 right-2 z-10 p-2 bg-white rounded-full shadow-md hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+</button>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida/ADBb0ui2tUFGxc4zFeo4MZP8PN5ftFxC_CdU3syorhwMKg-hCOqKgkehnhFEvSuyXvvd4IKcL1zTB44c-PW2X1RFue8YL9fqUth1Qvs7XNvl04I0YayLkSapn-U9sj8VOakmy46QqrBbUi2w0b-zu_n1DLckEm87JfMHvr45VEXt7a-7poweL7-VB3WIH7RbE0Rf7l5F7HjaL-W6Pg1ruOQcUqfQTuLUKCNoY2l8vPMOx0uFckLGhjt5mSbwq6U">
+</div>
+<h4 class="font-body-lg text-body-lg mb-1 truncate">Doha Onen Sock</h4>
+<div class="inline-block px-3 py-1 bg-brand-cyan rounded-full font-bold text-label-sm mb-4">$23.00</div>
+<button class="w-full bg-primary-container text-on-primary-container py-2 rounded-full font-label-lg text-label-lg sticker-border hover:bg-primary-fixed-dim transition-colors">Add to Cart</button>
+</div>
+<div class="bg-white rounded-2xl p-4 sticker-border group">
+<div class="relative aspect-square mb-4 bg-gray-50 rounded-xl overflow-hidden">
+<button class="absolute top-2 right-2 z-10 p-2 bg-white rounded-full shadow-md hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+</button>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida/ADBb0uh2Wd4VA9J9I6bbQgDSK0Hhk0wX6DNIy8-EJMvVMRQBfSh--IyVdoEQeFKgWV0jn36h51NJmgM8FiXiePLLvqEFUDUyF1WxIgyCerrHA88uy90r5jybePJWDN74zADhACB9POvJ8PxjgjitnTJWS5be131p5rMKhAl-alvpkuXZsRbZvVJRyQZag7xB9cUvOW8rQ9hiOsqNH1iaeILINNJmTeE8tSugVeYBjV9t1Ryt467YFAEVh_3Fp2c">
+</div>
+<h4 class="font-body-lg text-body-lg mb-1 truncate">Ehdiy Dona Sock</h4>
+<div class="inline-block px-3 py-1 bg-brand-cyan rounded-full font-bold text-label-sm mb-4">$25.00</div>
+<button class="w-full bg-primary-container text-on-primary-container py-2 rounded-full font-label-lg text-label-lg sticker-border hover:bg-primary-fixed-dim transition-colors">Add to Cart</button>
+</div>
+</div>
+</section>
+<!-- Men's Collection -->
+<section class="max-w-container-max mx-auto px-margin-desktop mb-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-5 gap-gutter">
+<div class="md:pt-12">
+<h2 class="font-headline-lg text-headline-lg mb-6">Men's Collection</h2>
+<button class="bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-label-lg text-label-lg sticker-border hover:scale-105 transition-all">Shop Men's</button>
+</div>
+<div class="md:col-span-4 grid grid-cols-2 lg:grid-cols-4 gap-gutter">
+<div class="bg-white rounded-2xl p-4 sticker-border group">
+<div class="relative aspect-square mb-4 bg-gray-50 rounded-xl overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida/ADBb0uicyrnk7OIRliABbGOIgZDHBdY-Qu-aBxtfe6ux19mSgOi9-u6T0NYZFMriblRPiaMRMuqcq040nl7CUcvY9KlvxDIAfD23UHpTupqFo2iS1bnf5DfKjGgXpbB4RA0ShDV-08cr6M3T8h7cNKXlgFQcvK8RpHyhd9Mg1lb_Z7BoYmc5MX3jyJHDYq-Xdhws9D05IN3PxhtUYCi9W3wS7qjAAdIbLJUqnnCv2V3V5WIWikixpJ60zNut8R8">
+</div>
+<h4 class="font-body-lg text-body-lg mb-1 truncate">Fiwstment Sock</h4>
+<div class="inline-block px-3 py-1 bg-brand-cyan rounded-full font-bold text-label-sm mb-4">$25.00</div>
+<button class="w-full bg-primary-container text-on-primary-container py-2 rounded-full font-label-lg text-label-lg sticker-border hover:bg-primary-fixed-dim transition-colors">Add to Cart</button>
+</div>
+<div class="bg-white rounded-2xl p-4 sticker-border group">
+<div class="relative aspect-square mb-4 bg-gray-50 rounded-xl overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida/ADBb0uiyKT7KntdWhBh8xkUOeshpMiVakXYlDmToBuDVU3QllGUMSsCYdS9Hmu63bUluCa_6iNwX81ekCfrjkoAuWJixGQR8Vjrk8UYOkhfTkaNc0HVR9klXzZSdok1TiMJXF9LZ20jehQaSKAPKYSEOdQdtnBNCmssd2gb7QcatnW6xJlp-ENGWjec3kFd0VyyARMTuOfOpdYETGqd58iLi4w31h_rlLavxTSK6u4TFh0TTQ3VCaY2vwBTDChI">
+</div>
+<h4 class="font-body-lg text-body-lg mb-1 truncate">Firashment Sock</h4>
+<div class="inline-block px-3 py-1 bg-brand-cyan rounded-full font-bold text-label-sm mb-4">$25.00</div>
+<button class="w-full bg-primary-container text-on-primary-container py-2 rounded-full font-label-lg text-label-lg sticker-border hover:bg-primary-fixed-dim transition-colors">Add to Cart</button>
+</div>
+<div class="bg-white rounded-2xl p-4 sticker-border group">
+<div class="relative aspect-square mb-4 bg-gray-50 rounded-xl overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida/ADBb0ui2tUFGxc4zFeo4MZP8PN5ftFxC_CdU3syorhwMKg-hCOqKgkehnhFEvSuyXvvd4IKcL1zTB44c-PW2X1RFue8YL9fqUth1Qvs7XNvl04I0YayLkSapn-U9sj8VOakmy46QqrBbUi2w0b-zu_n1DLckEm87JfMHvr45VEXt7a-7poweL7-VB3WIH7RbE0Rf7l5F7HjaL-W6Pg1ruOQcUqfQTuLUKCNoY2l8vPMOx0uFckLGhjt5mSbwq6U">
+</div>
+<h4 class="font-body-lg text-body-lg mb-1 truncate">Memming Sock</h4>
+<div class="inline-block px-3 py-1 bg-brand-cyan rounded-full font-bold text-label-sm mb-4">$25.00</div>
+<button class="w-full bg-primary-container text-on-primary-container py-2 rounded-full font-label-lg text-label-lg sticker-border hover:bg-primary-fixed-dim transition-colors">Add to Cart</button>
+</div>
+<div class="bg-white rounded-2xl p-4 sticker-border group">
+<div class="relative aspect-square mb-4 bg-gray-50 rounded-xl overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida/ADBb0uh2Wd4VA9J9I6bbQgDSK0Hhk0wX6DNIy8-EJMvVMRQBfSh--IyVdoEQeFKgWV0jn36h51NJmgM8FiXiePLLvqEFUDUyF1WxIgyCerrHA88uy90r5jybePJWDN74zADhACB9POvJ8PxjgjitnTJWS5be131p5rMKhAl-alvpkuXZsRbZvVJRyQZag7xB9cUvOW8rQ9hiOsqNH1iaeILINNJmTeE8tSugVeYBjV9t1Ryt467YFAEVh_3Fp2c">
+</div>
+<h4 class="font-body-lg text-body-lg mb-1 truncate">Fiomhment Sock</h4>
+<div class="inline-block px-3 py-1 bg-brand-cyan rounded-full font-bold text-label-sm mb-4">$25.00</div>
+<button class="w-full bg-primary-container text-on-primary-container py-2 rounded-full font-label-lg text-label-lg sticker-border hover:bg-primary-fixed-dim transition-colors">Add to Cart</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Best Sellers -->
+<section class="max-w-container-max mx-auto px-margin-desktop mb-section-gap">
+<h2 class="font-headline-lg text-headline-lg mb-8">Best Sellers</h2>
+<div class="flex flex-col md:flex-row gap-6">
+<div class="bg-white rounded-2xl sticker-border group cursor-pointer relative overflow-hidden flex flex-col md:flex-row items-stretch md:w-1/2">
+<div class="w-full md:w-[40%] flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 z-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnb6h19I_lgD4dh2Fwk-8xYl8ZaEifaTOY629bMfYZh---ssggbn0sL8PSjXtvHyyvAV-0kBN39xx5JgjeUhupX7TclgkUGwJr2YqLfytaDETkFNq1lhInYYFjjo3E0jIuWBuj5DX1WFoNKdvsfsUoTKid_O28Fe3Y5Pt8rVV1nBGYx6cH9c3lF2I8zJWe4HXLhijhuWuKYBIrM5ILEhH0gDIXTNzGo_U-qZeyM8tLGldNTdnPvLPejwpXMMyn6K2xXCOK6g2UHg7NpA">
+</div>
+<div class="flex-1 p-8 md:p-12 flex flex-col justify-center items-start z-10">
+<h3 class="font-headline-md text-headline-md mb-2 font-bold">Hamen Sock</h3>
+<p class="font-headline-md text-headline-md text-on-surface-variant mb-6 font-bold">$25.00</p>
+<button class="bg-[#fbe902] text-black border-2 border-black px-10 py-3 rounded-full font-label-lg text-label-lg hover:scale-105 transition-all">Add to Cart</button>
+</div>
+</div>
+<div class="bg-white rounded-2xl sticker-border group cursor-pointer relative overflow-hidden flex flex-col md:flex-row items-stretch md:w-1/2">
+<div class="w-full md:w-[40%] flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 z-10" src="https://lh3.googleusercontent.com/aida/ADBb0ugypeoAvuh7Sy4YVmlzBvpbNR_Pr5R6MO9luEHILTStVHhmRurpyK8Bdjtws7m3in29HK7s4yXKfW079gf5HCAnJQzLmyIfYDlnbu2BPbcKJrEmXhRwBqdnNMOMqNp-cwgFGl21wO_-qN5TS91m79LweojtIfVIUkMTSCE40pDVAkxs3w3aT9wWh2y--34eIFWV3gHq8v1z3IQEX_H0jBKIPBZ5c9JOLPLo5SIQbw8vooc5NpygR9GmkFs">
+</div>
+<div class="flex-1 p-8 md:p-12 flex flex-col justify-center items-start z-10">
+<h3 class="font-headline-md text-headline-md mb-2 font-bold">Vano Sock</h3>
+<p class="font-headline-md text-headline-md text-on-surface-variant mb-6 font-bold">$25.00</p>
+<button class="bg-[#fbe902] text-black border-2 border-black px-10 py-3 rounded-full font-label-lg text-label-lg hover:scale-105 transition-all">Add to Cart</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Crossing Marquees Section -->
+<section class="relative w-full overflow-hidden py-32 my-[-60px] h-[300px] flex items-center justify-center">
+<div class="absolute inset-0 flex items-center justify-center -rotate-3 z-10">
+<div class="w-[150%] bg-[#0066EE] py-6 border-y-2 border-black whitespace-nowrap overflow-hidden">
+<div class="inline-block animate-scroll px-4 font-display-lg text-headline-md font-black text-white uppercase">
+                SHOP THE COLLECTION • LIMITED EDITION DROPS • BEST SELLERS • SOCKJOY CLUB • FREE SHIPPING • SHOP THE COLLECTION • LIMITED EDITION DROPS • BEST SELLERS • SOCKJOY CLUB • FREE SHIPPING • SHOP THE COLLECTION • LIMITED EDITION DROPS • BEST SELLERS • SOCKJOY CLUB • FREE SHIPPING •
+            </div>
+</div>
+</div>
+<div class="absolute inset-0 flex items-center justify-center rotate-3 z-20">
+<div class="w-[150%] bg-[#FBE902] py-6 border-y-2 border-black whitespace-nowrap overflow-hidden">
+<div class="inline-block animate-scroll-reverse px-4 font-display-lg text-headline-md font-black text-black uppercase">
+                SHOP THE COLLECTION • LIMITED EDITION DROPS • BEST SELLERS • SOCKJOY CLUB • FREE SHIPPING • SHOP THE COLLECTION • LIMITED EDITION DROPS • BEST SELLERS • SOCKJOY CLUB • FREE SHIPPING • SHOP THE COLLECTION • LIMITED EDITION DROPS • BEST SELLERS • SOCKJOY CLUB • FREE SHIPPING •
+            </div>
+</div>
+</div>
+</section>
+<!-- Styled in SockJoy -->
+<section class="max-w-container-max mx-auto px-margin-desktop mb-section-gap">
+<h2 class="font-headline-lg text-headline-lg mb-8">Styled in SockJoy</h2>
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-gutter">
+<div class="aspect-square rounded-2xl overflow-hidden sticker-border group">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/ADBb0uicyrnk7OIRliABbGOIgZDHBdY-Qu-aBxtfe6ux19mSgOi9-u6T0NYZFMriblRPiaMRMuqcq040nl7CUcvY9KlvxDIAfD23UHpTupqFo2iS1bnf5DfKjGgXpbB4RA0ShDV-08cr6M3T8h7cNKXlgFQcvK8RpHyhd9Mg1lb_Z7BoYmc5MX3jyJHDYq-Xdhws9D05IN3PxhtUYCi9W3wS7qjAAdIbLJUqnnCv2V3V5WIWikixpJ60zNut8R8">
+</div>
+<div class="aspect-square rounded-2xl overflow-hidden sticker-border group">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/ADBb0ui2tUFGxc4zFeo4MZP8PN5ftFxC_CdU3syorhwMKg-hCOqKgkehnhFEvSuyXvvd4IKcL1zTB44c-PW2X1RFue8YL9fqUth1Qvs7XNvl04I0YayLkSapn-U9sj8VOakmy46QqrBbUi2w0b-zu_n1DLckEm87JfMHvr45VEXt7a-7poweL7-VB3WIH7RbE0Rf7l5F7HjaL-W6Pg1ruOQcUqfQTuLUKCNoY2l8vPMOx0uFckLGhjt5mSbwq6U">
+</div>
+<div class="aspect-square rounded-2xl overflow-hidden sticker-border group">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/ADBb0uh2Wd4VA9J9I6bbQgDSK0Hhk0wX6DNIy8-EJMvVMRQBfSh--IyVdoEQeFKgWV0jn36h51NJmgM8FiXiePLLvqEFUDUyF1WxIgyCerrHA88uy90r5jybePJWDN74zADhACB9POvJ8PxjgjitnTJWS5be131p5rMKhAl-alvpkuXZsRbZvVJRyQZag7xB9cUvOW8rQ9hiOsqNH1iaeILINNJmTeE8tSugVeYBjV9t1Ryt467YFAEVh_3Fp2c">
+</div>
+<div class="aspect-square rounded-2xl overflow-hidden sticker-border group">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/ADBb0uiyKT7KntdWhBh8xkUOeshpMiVakXYlDmToBuDVU3QllGUMSsCYdS9Hmu63bUluCa_6iNwX81ekCfrjkoAuWJixGQR8Vjrk8UYOkhfTkaNc0HVR9klXzZSdok1TiMJXF9LZ20jehQaSKAPKYSEOdQdtnBNCmssd2gb7QcatnW6xJlp-ENGWjec3kFd0VyyARMTuOfOpdYETGqd58iLi4w31h_rlLavxTSK6u4TFh0TTQ3VCaY2vwBTDChI">
+</div>
+</div>
+</section>
+<!-- Newsletter Section -->
+<section class="bg-brand-blue py-section-gap w-full text-white text-center px-margin-mobile">
+<div class="max-w-2xl mx-auto space-y-6">
+<h2 class="font-display-lg text-display-lg">Join the Joy Club</h2>
+<p class="font-body-lg text-body-lg text-white/90">Sign up for our newsletter to the Jelly Club and get 15% off your first order!</p>
+<form class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+<input class="w-full sm:w-96 rounded-full px-8 py-4 text-on-surface border-2 border-transparent focus:border-primary-fixed focus:outline-none focus:ring-0" placeholder="Enter your address" type="email">
+<button class="w-full sm:w-auto bg-primary-container text-on-primary-container px-10 py-4 rounded-full font-label-lg text-label-lg sticker-border hover:scale-105 transition-all" type="submit">Subscribe</button>
+</form>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-black text-white py-section-gap px-margin-desktop rounded-t-xl">
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="space-y-6">
+<h2 class="font-headline-lg text-primary-fixed text-headline-lg">Jelly</h2>
+<p class="font-body-md text-body-md opacity-80">Spreading happiness one step at a time with premium materials and playful designs.</p>
+<div class="flex gap-4">
+<a class="hover:text-primary-fixed transition-colors" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="hover:text-primary-fixed transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
+<a class="hover:text-primary-fixed transition-colors" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
+</div>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Quick Links</h4>
+<ul class="space-y-4">
+<li class=""><a class="text-white/80 hover:text-primary-fixed transition-colors" href="#">Shop All</a></li>
+<li class=""><a class="text-white/80 hover:text-primary-fixed transition-colors" href="#">New Arrivals</a></li>
+<li class=""><a class="text-white/80 hover:text-primary-fixed transition-colors" href="#">Best Sellers</a></li>
+<li class=""><a class="text-white/80 hover:text-primary-fixed transition-colors" href="#">Gifting</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Support</h4>
+<ul class="space-y-4">
+<li class=""><a class="text-white/80 hover:text-primary-fixed transition-colors" href="#">Size Guide</a></li>
+<li class=""><a class="text-white/80 hover:text-primary-fixed transition-colors" href="#">Returns</a></li>
+<li class=""><a class="text-white/80 hover:text-primary-fixed transition-colors" href="#">Track Order</a></li>
+<li class=""><a class="text-white/80 hover:text-primary-fixed transition-colors" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Sustainability</h4>
+<p class="font-body-md text-body-md opacity-80 mb-4">We are committed to eco-friendly packaging and ethical sourcing for every pair of socks.</p>
+<a class="text-primary-fixed underline font-label-lg" href="#">Learn more</a>
+</div>
+</div>
+<div class="max-w-container-max mx-auto mt-16 pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-body-md opacity-60">© 2024 SockJoy. Spreading happiness one step at a time.</p>
+<div class="flex gap-8">
+<a class="text-body-md opacity-60 hover:opacity-100 transition-opacity" href="#">Privacy Policy</a>
+<a class="text-body-md opacity-60 hover:opacity-100 transition-opacity" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+<script>
+        // Sticky header transition
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-lg');
+                header.classList.remove('border-b');
+            } else {
+                header.classList.remove('shadow-lg');
+                header.classList.add('border-b');
+            }
+        });
+    </script>
+
+
+</body></html>
