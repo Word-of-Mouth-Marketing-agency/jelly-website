@@ -113,12 +113,16 @@ export default function Header() {
             >
               <span className="material-symbols-outlined">favorite</span>
             </Link>
-            <button className="hover:scale-105 transition-transform relative">
+            <Link
+              href={`/${locale}/cart`}
+              className="hover:scale-105 transition-transform relative"
+              aria-label="Cart"
+            >
               <span className="material-symbols-outlined">shopping_bag</span>
               <span className="absolute -top-1 -right-1 bg-primary-container text-on-primary-container text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">
                 0
               </span>
-            </button>
+            </Link>
           </div>
         </div>
       </nav>

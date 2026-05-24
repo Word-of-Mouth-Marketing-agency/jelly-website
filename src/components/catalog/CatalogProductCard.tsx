@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ProductSummary } from "@/lib/products";
 import WishlistToggle from "./WishlistToggle";
+import AddToCartButton from "@/components/cart/AddToCartButton";
 
 interface Props {
   product: ProductSummary;
@@ -90,6 +91,12 @@ export default function CatalogProductCard({
           )}
         </div>
       </Link>
+      <AddToCartButton
+        variantId={product.defaultVariantId}
+        locale={locale}
+        disabled={!product.inStock}
+        className="mt-4 w-full py-2"
+      />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import AddToCartButton from "@/components/cart/AddToCartButton";
 
 type Variant = {
   id: string;
@@ -166,13 +167,12 @@ export default function VariantSelector({ variants, locale = "en" }: Props) {
         </div>
       )}
 
-      <button
-        type="button"
+      <AddToCartButton
+        variantId={activeVariant?.id ?? null}
+        locale={locale}
         disabled={!activeVariant || activeVariant.stock === 0}
-        className="w-full bg-primary-container text-on-primary-container py-4 rounded-full font-label-lg text-label-lg sticker-border hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:active:scale-100"
-      >
-        Add to Cart
-      </button>
+        className="w-full py-4 hover:scale-[1.02] active:scale-95"
+      />
     </div>
   );
 }

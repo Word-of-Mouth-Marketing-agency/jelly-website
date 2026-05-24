@@ -17,6 +17,7 @@ export type ProductSummary = {
   maxPrice: string;
   minPriceValue: number;
   maxPriceValue: number;
+  defaultVariantId: string | null;
   tags: Array<{ nameEn: string; nameAr: string }>;
   isFeatured: boolean;
   inStock: boolean;
@@ -115,7 +116,7 @@ function toSummary(p: {
   slug: string;
   isFeatured: boolean;
   images: Array<{ url: string; altEn: string | null }>;
-  variants: Array<{ price: { toString(): string }; stock: number }>;
+  variants: Array<{ id: string; price: { toString(): string }; stock: number }>;
   tags: Array<{ tag: { nameEn: string; nameAr: string } }>;
   category: { slug: string; nameEn: string; nameAr: string };
 }): ProductSummary {
@@ -123,6 +124,7 @@ function toSummary(p: {
     p.variants.map((v) => v.price)
   );
   const totalStock = p.variants.reduce((s, v) => s + v.stock, 0);
+  const defaultVariant = p.variants.find((v) => v.stock > 0) ?? p.variants[0];
   return {
     id: p.id,
     nameEn: p.nameEn,
@@ -137,6 +139,7 @@ function toSummary(p: {
     maxPrice: max,
     minPriceValue: minValue,
     maxPriceValue: maxValue,
+    defaultVariantId: defaultVariant?.id ?? null,
     tags: p.tags.map((t) => ({
       nameEn: t.tag.nameEn,
       nameAr: t.tag.nameAr,
@@ -220,7 +223,7 @@ const summaryInclude = {
     orderBy: [{ isPrimary: "desc" as const }, { position: "asc" as const }],
     take: 1,
   },
-  variants: { select: { price: true, stock: true } },
+  variants: { select: { id: true, price: true, stock: true } },
   tags: { include: { tag: true } },
   category: { select: { slug: true, nameEn: true, nameAr: true } },
 };
