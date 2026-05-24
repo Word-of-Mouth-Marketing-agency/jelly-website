@@ -9,13 +9,23 @@ import {
 import type { Metadata } from "next";
 import { ChevronRight, SearchX } from "lucide-react";
 import Link from "next/link";
+import { createMetadata } from "@/lib/metadata";
 
 type SearchParams = Record<string, string | string[] | undefined>;
 
-export const metadata: Metadata = {
-  title: "Search - Jelly",
-  description: "Search Jelly socks by style, category, color, size, and price.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return createMetadata({
+    title: "Search",
+    description: "Search Jelly socks by style, category, color, size, and price.",
+    path: "/search",
+    locale,
+  });
+}
 
 function firstParam(value: string | string[] | undefined) {
   return Array.isArray(value) ? value[0] : value;

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import SessionProvider from "@/components/providers/SessionProvider";
+import { createMetadata } from "@/lib/metadata";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -10,11 +11,10 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createMetadata({
   title: "Jelly | Socks that make you smile",
-  description:
-    "Jelly — Egyptian socks brand. Premium, playful, colorful socks for men, women, and kids.",
-};
+  path: "",
+});
 
 export default function RootLayout({
   children,

@@ -1,9 +1,20 @@
 import CheckoutClient from "@/components/cart/CheckoutClient";
 import type { Metadata } from "next";
+import { createMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Checkout - Jelly",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return createMetadata({
+    title: "Checkout",
+    description: "Cash on Delivery checkout. Complete your Jelly socks order.",
+    path: "/checkout",
+    locale,
+  });
+}
 
 export default async function CheckoutPage({
   params,

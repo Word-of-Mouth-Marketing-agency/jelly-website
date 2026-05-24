@@ -1,12 +1,6 @@
-import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-
-export const metadata: Metadata = {
-  title: "Jelly | Socks that make you smile",
-  description:
-    "Jelly — Egyptian socks brand. Premium, playful, colorful socks for men, women, and kids.",
-};
+import WhatsAppButton from "@/components/layout/WhatsAppButton";
 
 export default async function LocaleLayout({
   children,
@@ -23,6 +17,7 @@ export default async function LocaleLayout({
       <Header />
       <main>{children}</main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }

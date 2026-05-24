@@ -12,6 +12,7 @@ import CatalogProductCard from "@/components/catalog/CatalogProductCard";
 import WishlistToggle from "@/components/catalog/WishlistToggle";
 import { auth } from "@/auth";
 import { ArrowLeft, ChevronRight, Star } from "lucide-react";
+import { createMetadata } from "@/lib/metadata";
 
 export async function generateMetadata({
   params,
@@ -25,11 +26,15 @@ export async function generateMetadata({
   const isRtl = locale === "ar";
   const name = isRtl ? product.nameAr : product.nameEn;
   const description = isRtl ? product.descriptionAr : product.descriptionEn;
+  const image = product.images.find((i) => i.isPrimary)?.url ?? product.images[0]?.url;
 
-  return {
-    title: `${name} - Jelly`,
+  return createMetadata({
+    title: name,
     description: description ?? `${name} by Jelly. Premium Egyptian socks.`,
-  };
+    path: `/product/${slug}`,
+    image: image ? `${image}` : undefined,
+    locale,
+  });
 }
 
 export default async function ProductPage({

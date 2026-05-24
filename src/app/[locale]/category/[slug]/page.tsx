@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { createMetadata } from "@/lib/metadata";
 import {
   getCategories,
   getCategoryBySlug,
@@ -22,10 +23,12 @@ export async function generateMetadata({
 
   const name = locale === "ar" ? category.nameAr : category.nameEn;
 
-  return {
-    title: `${name} Socks - Jelly`,
-    description: `Browse Jelly's ${name} socks collection. Premium Egyptian socks.`,
-  };
+  return createMetadata({
+    title: `${name} Socks`,
+    description: `Browse Jelly's ${name} socks collection. Premium Egyptian socks for every occasion.`,
+    path: `/category/${slug}`,
+    locale,
+  });
 }
 
 export default async function CategoryPage({

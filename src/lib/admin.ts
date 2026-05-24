@@ -474,9 +474,14 @@ export async function getAdminOrderById(id: string) {
 }
 
 export async function updateOrderStatus(id: string, status: string) {
+  const validStatuses = ["PENDING", "CONFIRMED", "PROCESSING", "SHIPPED", "DELIVERED", "CANCELLED", "REFUNDED"] as const;
+  type ValidStatus = (typeof validStatuses)[number];
+  if (!validStatuses.includes(status as ValidStatus)) {
+    throw new Error("Invalid order status");
+  }
   return prisma.order.update({
     where: { id },
-    data: { status: status as any },
+    data: { status: status as ValidStatus },
   });
 }
 

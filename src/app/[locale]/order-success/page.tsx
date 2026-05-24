@@ -4,10 +4,21 @@ import { money } from "@/lib/money";
 import { CheckCircle2 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { createMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Order Success - Jelly",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return createMetadata({
+    title: "Order Confirmed",
+    description: "Thank you for your order! Your Jelly socks are on the way.",
+    path: "/order-success",
+    locale,
+  });
+}
 
 export default async function OrderSuccessPage({
   params,

@@ -8,6 +8,22 @@ import { money } from "@/lib/money";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
+import type { Metadata } from "next";
+import { createMetadata } from "@/lib/metadata";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; id: string }>;
+}): Promise<Metadata> {
+  const { locale, id } = await params;
+  return createMetadata({
+    title: `Order #${id.slice(-6).toUpperCase()}`,
+    description: "View your Jelly order details, items, and delivery status.",
+    path: `/account/orders/${id}`,
+    locale,
+  });
+}
 
 export default async function OrderDetailPage({
   params,

@@ -4,6 +4,22 @@ import { getWishlistProducts } from "@/lib/products";
 import { ChevronRight, Heart } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import type { Metadata } from "next";
+import { createMetadata } from "@/lib/metadata";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return createMetadata({
+    title: "Wishlist",
+    description: "Your saved Jelly socks. Save your favorites and shop later.",
+    path: "/wishlist",
+    locale,
+  });
+}
 
 export default async function WishlistPage({
   params,

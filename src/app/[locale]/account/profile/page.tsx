@@ -3,6 +3,22 @@ import ProfileForm from "@/components/account/ProfileForm";
 import { getProfile } from "@/lib/account";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import type { Metadata } from "next";
+import { createMetadata } from "@/lib/metadata";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return createMetadata({
+    title: "My Profile",
+    description: "Update your Jelly account profile, address, and contact details.",
+    path: "/account/profile",
+    locale,
+  });
+}
 
 export default async function ProfilePage({
   params,

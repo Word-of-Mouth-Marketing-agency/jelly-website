@@ -4,6 +4,22 @@ import { money } from "@/lib/money";
 import { ReceiptText } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import type { Metadata } from "next";
+import { createMetadata } from "@/lib/metadata";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return createMetadata({
+    title: "My Orders",
+    description: "View your Jelly order history and track your deliveries.",
+    path: "/account/orders",
+    locale,
+  });
+}
 
 export default async function OrdersPage({
   params,

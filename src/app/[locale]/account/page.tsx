@@ -3,6 +3,22 @@ import { getAccountOverview, orderNumber } from "@/lib/account";
 import { money } from "@/lib/money";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import type { Metadata } from "next";
+import { createMetadata } from "@/lib/metadata";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return createMetadata({
+    title: "My Account",
+    description: "Manage your Jelly account, view orders, and update your profile.",
+    path: "/account",
+    locale,
+  });
+}
 
 export default async function AccountPage({
   params,
