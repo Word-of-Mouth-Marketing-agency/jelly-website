@@ -1,12 +1,11 @@
 import Link from "next/link";
+import { SearchX } from "lucide-react";
 
 export default function ProductNotFound() {
   return (
     <div className="min-h-[60vh] flex items-center justify-center px-4">
       <div className="text-center">
-        <span className="material-symbols-outlined text-8xl text-outline-variant block mb-6">
-          search_off
-        </span>
+        <SearchX size={72} strokeWidth={1.75} className="mx-auto mb-6 text-outline-variant" aria-hidden="true" />
         <h1 className="font-headline-lg text-headline-lg text-on-surface mb-3">
           Product not found
         </h1>

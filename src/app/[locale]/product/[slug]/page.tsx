@@ -11,6 +11,7 @@ import VariantSelector from "@/components/catalog/VariantSelector";
 import CatalogProductCard from "@/components/catalog/CatalogProductCard";
 import WishlistToggle from "@/components/catalog/WishlistToggle";
 import { auth } from "@/auth";
+import { ArrowLeft, ChevronRight, Star } from "lucide-react";
 
 export async function generateMetadata({
   params,
@@ -72,18 +73,14 @@ export default async function ProductPage({
           >
             Home
           </Link>
-          <span className="material-symbols-outlined text-[16px]">
-            chevron_right
-          </span>
+          <ChevronRight size={16} strokeWidth={2.25} aria-hidden="true" />
           <Link
             href={`/${locale}/category/${product.category.slug}`}
             className="hover:text-primary transition-colors"
           >
             {categoryName}
           </Link>
-          <span className="material-symbols-outlined text-[16px]">
-            chevron_right
-          </span>
+          <ChevronRight size={16} strokeWidth={2.25} aria-hidden="true" />
           <span className="text-on-surface font-medium truncate max-w-[220px]">
             {name}
           </span>
@@ -129,9 +126,7 @@ export default async function ProductPage({
               />
               {product.isFeatured && (
                 <span className="flex items-center gap-1 text-sm font-semibold text-primary">
-                  <span className="material-symbols-outlined text-[18px]">
-                    star
-                  </span>
+                  <Star size={18} strokeWidth={2.25} aria-hidden="true" />
                   Featured
                 </span>
               )}
@@ -155,9 +150,7 @@ export default async function ProductPage({
                 href={`/${locale}/category/${product.category.slug}`}
                 className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
               >
-                <span className="material-symbols-outlined text-[18px]">
-                  arrow_back
-                </span>
+                <ArrowLeft size={18} strokeWidth={2.25} aria-hidden="true" />
                 More {categoryName} socks
               </Link>
             </div>

@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import CatalogProductCard from "@/components/catalog/CatalogProductCard";
 import { getWishlistProducts } from "@/lib/products";
+import { ChevronRight, Heart } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -32,9 +33,7 @@ export default async function WishlistPage({
             >
               Home
             </Link>
-            <span className="material-symbols-outlined text-[16px]">
-              chevron_right
-            </span>
+            <ChevronRight size={16} strokeWidth={2.25} aria-hidden="true" />
             <span className="text-on-surface font-medium">Wishlist</span>
           </nav>
           <h1 className="font-display-lg text-display-lg text-on-surface mb-2">
@@ -50,9 +49,7 @@ export default async function WishlistPage({
       <div className="max-w-container-max mx-auto px-margin-desktop py-12">
         {products.length === 0 ? (
           <div className="text-center py-24">
-            <span className="material-symbols-outlined text-8xl text-outline-variant block mb-6">
-              favorite
-            </span>
+            <Heart size={72} strokeWidth={1.75} className="mx-auto mb-6 text-outline-variant" aria-hidden="true" />
             <h2 className="font-headline-md text-headline-md text-on-surface mb-3">
               Nothing saved yet
             </h2>

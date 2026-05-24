@@ -1,6 +1,7 @@
 "use client";
 
 import { signOut, useSession } from "next-auth/react";
+import { User } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -19,7 +20,7 @@ export default function AccountMenu({ locale }: Props) {
         className="hover:scale-105 transition-transform"
         aria-label="Account"
       >
-        <span className="material-symbols-outlined">person</span>
+        <User size={24} strokeWidth={2.25} aria-hidden="true" />
       </Link>
     );
   }
@@ -33,7 +34,7 @@ export default function AccountMenu({ locale }: Props) {
         aria-label="Account menu"
         aria-expanded={open}
       >
-        <span className="material-symbols-outlined">person</span>
+        <User size={24} strokeWidth={2.25} aria-hidden="true" />
       </button>
       {open && (
         <div className="absolute right-0 top-full mt-3 w-56 rounded-2xl border-2 border-outline bg-white p-2 shadow-lg z-50">

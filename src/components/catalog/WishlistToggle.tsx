@@ -1,5 +1,6 @@
 "use client";
 
+import { Heart } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 
@@ -64,14 +65,13 @@ export default function WishlistToggle({
       title={hasSession ? "Save to wishlist" : "Sign in to save"}
       className={`inline-flex items-center justify-center rounded-full bg-white text-on-surface shadow-md border border-outline-variant transition-all hover:text-error hover:scale-105 disabled:opacity-60 ${className}`}
     >
-      <span
-        className={`material-symbols-outlined text-[20px] ${
-          active ? "text-error" : ""
-        }`}
-        style={{ fontVariationSettings: active ? '"FILL" 1' : '"FILL" 0' }}
-      >
-        favorite
-      </span>
+      <Heart
+        size={20}
+        strokeWidth={2.25}
+        fill={active ? "currentColor" : "none"}
+        className={active ? "text-error" : ""}
+        aria-hidden="true"
+      />
     </button>
   );
 }

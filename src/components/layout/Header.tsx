@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import AccountMenu from "./AccountMenu";
+import { Globe, Heart, Search, ShoppingBag } from "lucide-react";
 
 const NAV_LINKS = [
   { label: "Men", slug: "men" },
@@ -86,9 +87,7 @@ export default function Header() {
               aria-label="Search"
               className="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary"
             >
-              <span className="material-symbols-outlined text-[20px]">
-                search
-              </span>
+              <Search size={20} strokeWidth={2.25} aria-hidden="true" />
             </button>
           </form>
 
@@ -97,7 +96,7 @@ export default function Header() {
               href={locale === "ar" ? "/en" : "/ar"}
               className="flex items-center gap-1 hover:scale-105 transition-transform font-label-lg text-label-lg text-on-surface-variant"
             >
-              <span className="material-symbols-outlined text-[20px]">public</span>
+              <Globe size={20} strokeWidth={2.25} aria-hidden="true" />
               <span>{locale.toUpperCase()}</span>
             </Link>
             <AccountMenu locale={locale} />
@@ -106,14 +105,14 @@ export default function Header() {
               className="hover:scale-105 transition-transform"
               aria-label="Wishlist"
             >
-              <span className="material-symbols-outlined">favorite</span>
+              <Heart size={24} strokeWidth={2.25} aria-hidden="true" />
             </Link>
             <Link
               href={`/${locale}/cart`}
               className="hover:scale-105 transition-transform relative"
               aria-label="Cart"
             >
-              <span className="material-symbols-outlined">shopping_bag</span>
+              <ShoppingBag size={24} strokeWidth={2.25} aria-hidden="true" />
               <span className="absolute -top-1 -right-1 bg-primary-container text-on-primary-container text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">
                 0
               </span>

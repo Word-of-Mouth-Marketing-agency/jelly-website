@@ -1,5 +1,6 @@
 "use client";
 
+import { Shirt } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -28,9 +29,7 @@ export default function ImageGallery({
   if (!active) {
     return (
       <div className="aspect-square bg-surface-container rounded-2xl sticker-border flex items-center justify-center">
-        <span className="material-symbols-outlined text-8xl text-outline-variant">
-          checkroom
-        </span>
+        <Shirt size={72} strokeWidth={1.75} className="text-outline-variant" aria-hidden="true" />
       </div>
     );
   }

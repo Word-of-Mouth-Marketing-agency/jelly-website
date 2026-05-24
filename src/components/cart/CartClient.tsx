@@ -3,6 +3,7 @@
 import { clearLocalCart, readLocalCart, setLocalCartItem } from "@/lib/client-cart";
 import type { CartQuote } from "@/lib/cart";
 import { money } from "@/lib/money";
+import { ShoppingBag } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -98,9 +99,7 @@ export default function CartClient({ locale }: Props) {
     <div className="max-w-container-max mx-auto px-margin-desktop py-12">
       {items.length === 0 ? (
         <div className="text-center py-24">
-          <span className="material-symbols-outlined text-8xl text-outline-variant block mb-6">
-            shopping_bag
-          </span>
+          <ShoppingBag size={72} strokeWidth={1.75} className="mx-auto mb-6 text-outline-variant" aria-hidden="true" />
           <h2 className="font-headline-md text-headline-md mb-3">
             Your cart is empty
           </h2>

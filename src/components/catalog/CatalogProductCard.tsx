@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { ProductSummary } from "@/lib/products";
 import WishlistToggle from "./WishlistToggle";
 import AddToCartButton from "@/components/cart/AddToCartButton";
+import { Shirt, Star } from "lucide-react";
 
 interface Props {
   product: ProductSummary;
@@ -53,9 +54,7 @@ export default function CatalogProductCard({
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center">
-              <span className="material-symbols-outlined text-6xl text-outline-variant">
-                checkroom
-              </span>
+              <Shirt size={56} strokeWidth={1.75} className="text-outline-variant" aria-hidden="true" />
             </div>
           )}
         </div>
@@ -82,12 +81,12 @@ export default function CatalogProductCard({
             {price}
           </span>
           {product.isFeatured && (
-            <span
-              className="material-symbols-outlined text-[18px] text-primary"
-              title="Featured"
-            >
-              star
-            </span>
+            <Star
+              size={18}
+              strokeWidth={2.25}
+              className="text-primary"
+              aria-hidden="true"
+            />
           )}
         </div>
       </Link>

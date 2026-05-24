@@ -7,6 +7,7 @@ import {
   type ProductSearchFilters,
 } from "@/lib/products";
 import type { Metadata } from "next";
+import { ChevronRight, SearchX } from "lucide-react";
 import Link from "next/link";
 
 type SearchParams = Record<string, string | string[] | undefined>;
@@ -88,9 +89,7 @@ export default async function SearchPage({
             >
               Home
             </Link>
-            <span className="material-symbols-outlined text-[16px]">
-              chevron_right
-            </span>
+            <ChevronRight size={16} strokeWidth={2.25} aria-hidden="true" />
             <span className="text-on-surface font-medium">Search</span>
           </nav>
           <h1 className="font-display-lg text-display-lg text-on-surface mb-2">
@@ -232,9 +231,7 @@ export default async function SearchPage({
 
         {products.length === 0 ? (
           <div className="text-center py-24">
-            <span className="material-symbols-outlined text-8xl text-outline-variant block mb-6">
-              search_off
-            </span>
+            <SearchX size={72} strokeWidth={1.75} className="mx-auto mb-6 text-outline-variant" aria-hidden="true" />
             <h2 className="font-headline-md text-headline-md text-on-surface mb-3">
               No matching socks
             </h2>

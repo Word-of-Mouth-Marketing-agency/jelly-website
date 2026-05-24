@@ -1,3 +1,4 @@
+import { Heart } from "lucide-react";
 import Image from "next/image";
 
 export interface Product {
@@ -21,7 +22,7 @@ export default function ProductCard({
       <div className="relative aspect-square mb-4 bg-gray-50 rounded-xl overflow-hidden">
         {showWishlist && (
           <button className="absolute top-2 right-2 z-10 p-2 bg-white rounded-full shadow-md hover:text-error transition-colors">
-            <span className="material-symbols-outlined text-[20px]">favorite</span>
+            <Heart size={20} strokeWidth={2.25} aria-hidden="true" />
           </button>
         )}
         <Image

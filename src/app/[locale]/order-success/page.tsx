@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import { getOrderForSuccess } from "@/lib/cart";
 import { money } from "@/lib/money";
+import { CheckCircle2 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -32,9 +33,7 @@ export default async function OrderSuccessPage({
     <div className="min-h-screen bg-surface-container-high">
       <div className="max-w-2xl mx-auto px-margin-mobile py-20 text-center">
         <div className="bg-white rounded-2xl sticker-border p-8">
-          <span className="material-symbols-outlined text-7xl text-tertiary mb-4 block">
-            check_circle
-          </span>
+          <CheckCircle2 size={72} strokeWidth={1.75} className="mx-auto mb-4 text-tertiary" aria-hidden="true" />
           <h1 className="font-display-lg text-display-lg text-on-surface mb-3">
             Order placed
           </h1>

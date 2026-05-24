@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AtSign, Globe, Share2 } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -14,14 +15,14 @@ export default function Footer() {
             playful designs.
           </p>
           <div className="flex gap-4">
-            <Link href="#" className="hover:text-primary-fixed transition-colors">
-              <span className="material-symbols-outlined">public</span>
+            <Link href="#" className="hover:text-primary-fixed transition-colors" aria-label="Website">
+              <Globe size={24} strokeWidth={2.25} aria-hidden="true" />
             </Link>
-            <Link href="#" className="hover:text-primary-fixed transition-colors">
-              <span className="material-symbols-outlined">share</span>
+            <Link href="#" className="hover:text-primary-fixed transition-colors" aria-label="Share">
+              <Share2 size={24} strokeWidth={2.25} aria-hidden="true" />
             </Link>
-            <Link href="#" className="hover:text-primary-fixed transition-colors">
-              <span className="material-symbols-outlined">alternate_email</span>
+            <Link href="#" className="hover:text-primary-fixed transition-colors" aria-label="Email">
+              <AtSign size={24} strokeWidth={2.25} aria-hidden="true" />
             </Link>
           </div>
         </div>

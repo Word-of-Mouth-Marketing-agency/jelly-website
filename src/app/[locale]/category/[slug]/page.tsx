@@ -9,6 +9,7 @@ import {
 } from "@/lib/products";
 import CatalogProductCard from "@/components/catalog/CatalogProductCard";
 import { auth } from "@/auth";
+import { ChevronRight, PackageOpen } from "lucide-react";
 
 export async function generateMetadata({
   params,
@@ -62,9 +63,7 @@ export default async function CategoryPage({
             >
               Home
             </Link>
-            <span className="material-symbols-outlined text-[16px]">
-              chevron_right
-            </span>
+            <ChevronRight size={16} strokeWidth={2.25} aria-hidden="true" />
             <span className="text-on-surface font-medium">{categoryName}</span>
           </nav>
 
@@ -101,9 +100,12 @@ export default async function CategoryPage({
 
         {products.length === 0 ? (
           <div className="text-center py-24">
-            <span className="material-symbols-outlined text-8xl text-outline-variant block mb-6">
-              inventory_2
-            </span>
+            <PackageOpen
+              size={72}
+              strokeWidth={1.75}
+              className="mx-auto mb-6 text-outline-variant"
+              aria-hidden="true"
+            />
             <h2 className="font-headline-md text-headline-md text-on-surface mb-3">
               No products yet
             </h2>

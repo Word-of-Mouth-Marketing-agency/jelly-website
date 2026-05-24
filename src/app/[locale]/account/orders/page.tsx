@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import { getUserOrders, orderNumber } from "@/lib/account";
 import { money } from "@/lib/money";
+import { ReceiptText } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -40,9 +41,7 @@ export default async function OrdersPage({
       <div className="max-w-container-max mx-auto px-margin-desktop py-12">
         {orders.length === 0 ? (
           <div className="text-center py-24">
-            <span className="material-symbols-outlined text-8xl text-outline-variant block mb-6">
-              receipt_long
-            </span>
+            <ReceiptText size={72} strokeWidth={1.75} className="mx-auto mb-6 text-outline-variant" aria-hidden="true" />
             <h2 className="font-headline-md text-headline-md mb-3">
               No orders yet
             </h2>
