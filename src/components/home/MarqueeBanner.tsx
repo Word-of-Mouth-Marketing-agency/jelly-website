@@ -1,11 +1,26 @@
 export default function MarqueeBanner() {
-  const text =
-    "SOCKS THAT MAKE YOU SMILE ★ STEP INTO JOY ★ COMFORT IN EVERY COLOR ★ SOCKS THAT MAKE YOU SMILE ★ STEP INTO JOY ★ COMFORT IN EVERY COLOR ★ SOCKS THAT MAKE YOU SMILE ★ STEP INTO JOY ★ COMFORT IN EVERY COLOR ★ ";
+  const items = [
+    "Comfort in Every Color",
+    "Socks That Make You Smile",
+    "Step Into Joy",
+  ];
+
+  const content = (
+    <>
+      {items.map((item, i) => (
+        <span key={i} className="wom-marquee__content">
+          {item}
+          <span className="wom-marquee__icon" aria-hidden="true">&#10022;</span>
+        </span>
+      ))}
+    </>
+  );
 
   return (
-    <section className="w-full bg-primary-fixed overflow-hidden whitespace-nowrap py-4 border-y-2 border-black">
-      <div className="inline-block animate-[scroll_20s_linear_infinite] px-4 font-display-lg text-headline-md font-black text-black uppercase">
-        {text}
+    <section className="wom-marquee">
+      <div className="wom-marquee__track">
+        <div className="wom-marquee__group">{content}</div>
+        <div className="wom-marquee__group">{content}</div>
       </div>
     </section>
   );
