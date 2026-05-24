@@ -2,9 +2,19 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+
+const NAV_LINKS = [
+  { label: "Men", slug: "men" },
+  { label: "Women", slug: "women" },
+  { label: "Kids", slug: "kids" },
+  { label: "Unisex", slug: "unisex" },
+];
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const locale = pathname.startsWith("/ar") ? "ar" : "en";
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -28,23 +38,33 @@ export default function Header() {
         {/* Logo + nav links */}
         <div className="flex items-center gap-8 w-full md:w-auto justify-between md:justify-start">
           <Link
-            href="#"
+            href={`/${locale}`}
             className="font-display-lg text-headline-lg font-black text-on-surface"
           >
             Jelly
           </Link>
           <div className="hidden md:flex gap-6">
-            {["Men", "Women", "Kids", "Gifting", "About", "Contact"].map(
-              (label) => (
-                <Link
-                  key={label}
-                  href="#"
-                  className="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-lg text-label-lg"
-                >
-                  {label}
-                </Link>
-              )
-            )}
+            {NAV_LINKS.map(({ label, slug }) => (
+              <Link
+                key={slug}
+                href={`/${locale}/category/${slug}`}
+                className="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-lg text-label-lg"
+              >
+                {label}
+              </Link>
+            ))}
+            <Link
+              href={`/${locale}/about`}
+              className="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-lg text-label-lg"
+            >
+              About
+            </Link>
+            <Link
+              href={`/${locale}/contact`}
+              className="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-lg text-label-lg"
+            >
+              Contact
+            </Link>
           </div>
         </div>
 
@@ -62,16 +82,27 @@ export default function Header() {
           </div>
 
           <div className="flex items-center gap-4">
-            <button className="flex items-center gap-1 hover:scale-105 transition-transform font-label-lg text-label-lg text-on-surface-variant">
+            <Link
+              href={locale === "ar" ? "/en" : "/ar"}
+              className="flex items-center gap-1 hover:scale-105 transition-transform font-label-lg text-label-lg text-on-surface-variant"
+            >
               <span className="material-symbols-outlined text-[20px]">public</span>
-              <span>EN</span>
-            </button>
-            <button className="hover:scale-105 transition-transform">
+              <span>{locale.toUpperCase()}</span>
+            </Link>
+            <Link
+              href={`/${locale}/account`}
+              className="hover:scale-105 transition-transform"
+              aria-label="Account"
+            >
               <span className="material-symbols-outlined">person</span>
-            </button>
-            <button className="hover:scale-105 transition-transform">
+            </Link>
+            <Link
+              href={`/${locale}/wishlist`}
+              className="hover:scale-105 transition-transform"
+              aria-label="Wishlist"
+            >
               <span className="material-symbols-outlined">favorite</span>
-            </button>
+            </Link>
             <button className="hover:scale-105 transition-transform relative">
               <span className="material-symbols-outlined">shopping_bag</span>
               <span className="absolute -top-1 -right-1 bg-primary-container text-on-primary-container text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">

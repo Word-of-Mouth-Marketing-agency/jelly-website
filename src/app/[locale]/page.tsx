@@ -8,12 +8,18 @@ import CrossingMarquees from "@/components/home/CrossingMarquees";
 import StyledInJelly from "@/components/home/StyledInJelly";
 import Newsletter from "@/components/home/Newsletter";
 
-export default function HomePage() {
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
   return (
     <>
       <HeroSection />
       <MarqueeBanner />
-      <CategoryRow />
+      <CategoryRow locale={locale} />
       <NewArrivals />
       <MensCollection />
       <BestSellers />
