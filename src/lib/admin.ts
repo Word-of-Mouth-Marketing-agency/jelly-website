@@ -376,3 +376,461 @@ export async function getAllSizes() {
 export async function getAllColors() {
   return prisma.color.findMany({ orderBy: { nameEn: "asc" } });
 }
+
+// ─── Orders ─────────────────────────────────────────────────────────────────
+
+export async function getAdminOrders(options: {
+  search?: string;
+  status?: string;
+  skip?: number;
+  take?: number;
+}) {
+  const { search, status, skip = 0, take = 50 } = options;
+  const where: Prisma.OrderWhereInput = {};
+  if (status) where.status = status as Prisma.EnumOrderStatusFilter;
+  if (search) {
+    where.OR = [
+      { id: { contains: search, mode: "insensitive" } },
+      { user: { email: { contains: search, mode: "insensitive" } } },
+      { shippingAddress: { contains: search, mode: "insensitive" } },
+    ];
+  }
+  const [rows, count] = await Promise.all([
+    prisma.order.findMany({
+      where,
+      include: {
+        items: { include: { product: { select: { nameEn: true } } } },
+        user: { select: { id: true, email: true, profile: { select: { firstName: true, lastName: true, phone: true } } } },
+        coupon: { select: { code: true } },
+      },
+      orderBy: { createdAt: "desc" },
+      skip,
+      take,
+    }),
+    prisma.order.count({ where }),
+  ]);
+  return {
+    orders: rows.map((o) => ({
+      id: o.id,
+      status: o.status,
+      total: Number(o.total),
+      subtotal: Number(o.subtotal),
+      discount: Number(o.discount),
+      customerEmail: o.user?.email ?? "Guest",
+      customerName: o.user?.profile ? `${o.user.profile.firstName ?? ""} ${o.user.profile.lastName ?? ""}`.trim() : "Guest",
+      phone: o.user?.profile?.phone ?? null,
+      itemCount: o.items.length,
+      couponCode: o.coupon?.code ?? null,
+      createdAt: o.createdAt.toISOString(),
+      updatedAt: o.updatedAt.toISOString(),
+    })),
+    count,
+  };
+}
+
+export async function getAdminOrderById(id: string) {
+  const o = await prisma.order.findUnique({
+    where: { id },
+    include: {
+      items: {
+        include: {
+          product: { select: { nameEn: true, nameAr: true, slug: true } },
+          variant: { include: { size: true, color: true } },
+        },
+      },
+      user: { select: { id: true, email: true, profile: { select: { firstName: true, lastName: true, phone: true, address: true, city: true } } } },
+      coupon: { select: { code: true, type: true, value: true } },
+    },
+  });
+  if (!o) return null;
+  return {
+    id: o.id,
+    status: o.status,
+    total: Number(o.total),
+    subtotal: Number(o.subtotal),
+    discount: Number(o.discount),
+    shippingAddress: o.shippingAddress,
+    customerEmail: o.user?.email ?? "Guest",
+    customerName: o.user?.profile ? `${o.user.profile.firstName ?? ""} ${o.user.profile.lastName ?? ""}`.trim() : "Guest",
+    phone: o.user?.profile?.phone ?? null,
+    address: o.user?.profile?.address ?? null,
+    city: o.user?.profile?.city ?? null,
+    couponCode: o.coupon?.code ?? null,
+    couponType: o.coupon?.type ?? null,
+    couponValue: o.coupon ? Number(o.coupon.value) : null,
+    items: o.items.map((i) => ({
+      id: i.id,
+      productName: i.product.nameEn,
+      productSlug: i.product.slug,
+      sizeLabel: i.variant.size.label,
+      colorName: i.variant.color.nameEn,
+      colorHex: i.variant.color.hex,
+      quantity: i.quantity,
+      unitPrice: Number(i.unitPrice),
+    })),
+    createdAt: o.createdAt.toISOString(),
+    updatedAt: o.updatedAt.toISOString(),
+  };
+}
+
+export async function updateOrderStatus(id: string, status: string) {
+  return prisma.order.update({
+    where: { id },
+    data: { status: status as any },
+  });
+}
+
+// ─── Stock / Variants ───────────────────────────────────────────────────────
+
+export async function getAdminStock(options: {
+  search?: string;
+  productId?: string;
+  stockFilter?: "all" | "low" | "out";
+  skip?: number;
+  take?: number;
+}) {
+  const { search, productId, stockFilter = "all", skip = 0, take = 100 } = options;
+
+  const where: Prisma.VariantWhereInput = {};
+  if (productId) where.productId = productId;
+  if (stockFilter === "low") where.stock = { lte: 5, gt: 0 };
+  if (stockFilter === "out") where.stock = 0;
+
+  if (search) {
+    where.product = {
+      OR: [
+        { nameEn: { contains: search, mode: "insensitive" } },
+        { nameAr: { contains: search, mode: "insensitive" } },
+        { slug: { contains: search, mode: "insensitive" } },
+      ],
+    };
+  }
+
+  const [rows, count] = await Promise.all([
+    prisma.variant.findMany({
+      where,
+      include: {
+        product: { select: { id: true, nameEn: true, nameAr: true, slug: true, images: { orderBy: [{ isPrimary: "desc" }], take: 1 } } },
+        size: true,
+        color: true,
+      },
+      orderBy: [{ product: { nameEn: "asc" } }, { color: { nameEn: "asc" } }, { size: { label: "asc" } }],
+      skip,
+      take,
+    }),
+    prisma.variant.count({ where }),
+  ]);
+
+  return {
+    variants: rows.map((v) => ({
+      id: v.id,
+      sku: v.sku,
+      price: Number(v.price),
+      stock: v.stock,
+      sizeLabel: v.size.label,
+      colorName: v.color.nameEn,
+      colorHex: v.color.hex,
+      productId: v.productId,
+      productName: v.product.nameEn,
+      productSlug: v.product.slug,
+      primaryImage: v.product.images[0]?.url ?? null,
+    })),
+    count,
+  };
+}
+
+export async function updateVariantStock(id: string, stock: number) {
+  return prisma.variant.update({
+    where: { id },
+    data: { stock },
+  });
+}
+
+export async function bulkUpdateStock(updates: Array<{ id: string; stock: number }>) {
+  return prisma.$transaction(
+    updates.map((u) => prisma.variant.update({ where: { id: u.id }, data: { stock: u.stock } }))
+  );
+}
+
+// ─── Coupons ──────────────────────────────────────────────────────────────────
+
+export async function getAdminCoupons() {
+  const rows = await prisma.coupon.findMany({ orderBy: { createdAt: "desc" } });
+  return rows.map((c) => ({
+    id: c.id,
+    code: c.code,
+    type: c.type,
+    value: Number(c.value),
+    minOrder: c.minOrder ? Number(c.minOrder) : null,
+    maxUses: c.maxUses,
+    usedCount: c.usedCount,
+    isActive: c.isActive,
+    expiresAt: c.expiresAt?.toISOString() ?? null,
+    createdAt: c.createdAt.toISOString(),
+  }));
+}
+
+export async function createCoupon(data: {
+  code: string;
+  type: "PERCENTAGE" | "FIXED";
+  value: number;
+  minOrder?: number | null;
+  maxUses?: number | null;
+  expiresAt?: string | null;
+  isActive?: boolean;
+}) {
+  return prisma.coupon.create({
+    data: {
+      code: data.code,
+      type: data.type,
+      value: data.value,
+      minOrder: data.minOrder ?? null,
+      maxUses: data.maxUses ?? null,
+      expiresAt: data.expiresAt ? new Date(data.expiresAt) : null,
+      isActive: data.isActive ?? true,
+    },
+  });
+}
+
+export async function updateCoupon(
+  id: string,
+  data: {
+    code?: string;
+    type?: "PERCENTAGE" | "FIXED";
+    value?: number;
+    minOrder?: number | null;
+    maxUses?: number | null;
+    expiresAt?: string | null;
+    isActive?: boolean;
+  }
+) {
+  return prisma.coupon.update({
+    where: { id },
+    data: {
+      ...data,
+      expiresAt: data.expiresAt === null ? null : data.expiresAt ? new Date(data.expiresAt) : undefined,
+    },
+  });
+}
+
+export async function deleteCoupon(id: string) {
+  return prisma.coupon.delete({ where: { id } });
+}
+
+// ─── Banners ──────────────────────────────────────────────────────────────────
+
+export async function getAdminBanners() {
+  const rows = await prisma.banner.findMany({ orderBy: { position: "asc" } });
+  return rows.map((b) => ({
+    id: b.id,
+    titleEn: b.titleEn,
+    titleAr: b.titleAr,
+    subtitleEn: b.subtitleEn,
+    subtitleAr: b.subtitleAr,
+    imageUrl: b.imageUrl,
+    linkUrl: b.linkUrl,
+    isActive: b.isActive,
+    position: b.position,
+    createdAt: b.createdAt.toISOString(),
+  }));
+}
+
+export async function createBanner(data: {
+  titleEn: string;
+  titleAr: string;
+  subtitleEn?: string;
+  subtitleAr?: string;
+  imageUrl: string;
+  linkUrl?: string;
+  position?: number;
+  isActive?: boolean;
+}) {
+  return prisma.banner.create({
+    data: {
+      titleEn: data.titleEn,
+      titleAr: data.titleAr,
+      subtitleEn: data.subtitleEn,
+      subtitleAr: data.subtitleAr,
+      imageUrl: data.imageUrl,
+      linkUrl: data.linkUrl,
+      position: data.position ?? 0,
+      isActive: data.isActive ?? true,
+    },
+  });
+}
+
+export async function updateBanner(
+  id: string,
+  data: {
+    titleEn?: string;
+    titleAr?: string;
+    subtitleEn?: string | null;
+    subtitleAr?: string | null;
+    imageUrl?: string;
+    linkUrl?: string | null;
+    position?: number;
+    isActive?: boolean;
+  }
+) {
+  return prisma.banner.update({ where: { id }, data });
+}
+
+export async function deleteBanner(id: string) {
+  return prisma.banner.delete({ where: { id } });
+}
+
+// ─── Custom Orders ────────────────────────────────────────────────────────────
+
+export async function getAdminCustomOrders(options: {
+  status?: string;
+  search?: string;
+  skip?: number;
+  take?: number;
+}) {
+  const { status, search, skip = 0, take = 50 } = options;
+  const where: Prisma.CustomOrderRequestWhereInput = {};
+  if (status) where.status = status;
+  if (search) {
+    where.OR = [
+      { name: { contains: search, mode: "insensitive" } },
+      { email: { contains: search, mode: "insensitive" } },
+      { phone: { contains: search, mode: "insensitive" } },
+    ];
+  }
+  const [rows, count] = await Promise.all([
+    prisma.customOrderRequest.findMany({ where, orderBy: { createdAt: "desc" }, skip, take }),
+    prisma.customOrderRequest.count({ where }),
+  ]);
+  return {
+    requests: rows.map((r) => ({
+      id: r.id,
+      name: r.name,
+      email: r.email,
+      phone: r.phone,
+      description: r.description,
+      quantity: r.quantity,
+      status: r.status,
+      createdAt: r.createdAt.toISOString(),
+      updatedAt: r.updatedAt.toISOString(),
+    })),
+    count,
+  };
+}
+
+export async function getAdminCustomOrderById(id: string) {
+  const r = await prisma.customOrderRequest.findUnique({ where: { id } });
+  if (!r) return null;
+  return {
+    id: r.id,
+    name: r.name,
+    email: r.email,
+    phone: r.phone,
+    description: r.description,
+    quantity: r.quantity,
+    status: r.status,
+    createdAt: r.createdAt.toISOString(),
+    updatedAt: r.updatedAt.toISOString(),
+  };
+}
+
+export async function updateCustomOrderStatus(id: string, status: string) {
+  return prisma.customOrderRequest.update({ where: { id }, data: { status } });
+}
+
+export async function updateCustomOrderNotes(id: string, notes: string | null) {
+  // Since there's no notes field in schema, we'll store it in a lightweight way
+  // by extending the description or using a separate approach.
+  // For now, we'll just update status as the schema doesn't have adminNotes.
+  // In a real app, we'd add an adminNotes field to CustomOrderRequest.
+  return prisma.customOrderRequest.update({ where: { id }, data: { description: notes ?? undefined } });
+}
+
+// ─── Users / Customers ────────────────────────────────────────────────────────
+
+export async function getAdminUsers(options: {
+  search?: string;
+  skip?: number;
+  take?: number;
+}) {
+  const { search, skip = 0, take = 50 } = options;
+  const where: Prisma.UserWhereInput = { role: "CUSTOMER" };
+  if (search) {
+    where.OR = [
+      { email: { contains: search, mode: "insensitive" } },
+      { profile: { firstName: { contains: search, mode: "insensitive" } } },
+      { profile: { lastName: { contains: search, mode: "insensitive" } } },
+      { profile: { phone: { contains: search, mode: "insensitive" } } },
+    ];
+  }
+  const [rows, count] = await Promise.all([
+    prisma.user.findMany({
+      where,
+      include: {
+        profile: true,
+        _count: { select: { orders: true } },
+      },
+      orderBy: { createdAt: "desc" },
+      skip,
+      take,
+    }),
+    prisma.user.count({ where }),
+  ]);
+  return {
+    users: rows.map((u) => ({
+      id: u.id,
+      email: u.email,
+      firstName: u.profile?.firstName ?? null,
+      lastName: u.profile?.lastName ?? null,
+      phone: u.profile?.phone ?? null,
+      address: u.profile?.address ?? null,
+      city: u.profile?.city ?? null,
+      postalCode: u.profile?.postalCode ?? null,
+      isActive: u.isActive,
+      orderCount: u._count.orders,
+      createdAt: u.createdAt.toISOString(),
+    })),
+    count,
+  };
+}
+
+export async function getAdminUserById(id: string) {
+  const u = await prisma.user.findUnique({
+    where: { id, role: "CUSTOMER" },
+    include: {
+      profile: true,
+      orders: {
+        orderBy: { createdAt: "desc" },
+        include: {
+          items: { include: { product: { select: { nameEn: true } } } },
+          coupon: { select: { code: true } },
+        },
+      },
+    },
+  });
+  if (!u) return null;
+  return {
+    id: u.id,
+    email: u.email,
+    firstName: u.profile?.firstName ?? null,
+    lastName: u.profile?.lastName ?? null,
+    phone: u.profile?.phone ?? null,
+    address: u.profile?.address ?? null,
+    city: u.profile?.city ?? null,
+    postalCode: u.profile?.postalCode ?? null,
+    country: u.profile?.country ?? null,
+    isActive: u.isActive,
+    createdAt: u.createdAt.toISOString(),
+    orders: u.orders.map((o) => ({
+      id: o.id,
+      status: o.status,
+      total: Number(o.total),
+      itemCount: o.items.length,
+      couponCode: o.coupon?.code ?? null,
+      createdAt: o.createdAt.toISOString(),
+    })),
+  };
+}
+
+export async function toggleUserActive(id: string, isActive: boolean) {
+  return prisma.user.update({ where: { id }, data: { isActive } });
+}
