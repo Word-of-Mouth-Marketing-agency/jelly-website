@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import AccountMenu from "./AccountMenu";
 
 const NAV_LINKS = [
   { label: "Men", slug: "men" },
@@ -99,13 +100,7 @@ export default function Header() {
               <span className="material-symbols-outlined text-[20px]">public</span>
               <span>{locale.toUpperCase()}</span>
             </Link>
-            <Link
-              href={`/${locale}/account`}
-              className="hover:scale-105 transition-transform"
-              aria-label="Account"
-            >
-              <span className="material-symbols-outlined">person</span>
-            </Link>
+            <AccountMenu locale={locale} />
             <Link
               href={`/${locale}/wishlist`}
               className="hover:scale-105 transition-transform"
