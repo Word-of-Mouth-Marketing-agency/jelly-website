@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -39,11 +40,15 @@ export default function Header() {
       <nav className="max-w-container-max mx-auto px-margin-desktop py-4 flex flex-col md:flex-row items-center justify-between gap-4">
         {/* Logo + nav links */}
         <div className="flex items-center gap-8 w-full md:w-auto justify-between md:justify-start">
-          <Link
-            href={`/${locale}`}
-            className="font-display-lg text-headline-lg font-black text-on-surface"
-          >
-            Jelly
+          <Link href={`/${locale}`} className="relative flex-shrink-0">
+            <Image
+              src="/brand/jelly-logo.png"
+              alt="Jelly logo"
+              width={110}
+              height={40}
+              className="h-auto w-[90px] sm:w-[110px]"
+              priority
+            />
           </Link>
           <div className="hidden md:flex gap-6">
             {NAV_LINKS.map(({ label, slug }) => (

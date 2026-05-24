@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 function FacebookIcon({ className }: { className?: string }) {
@@ -32,9 +33,15 @@ export default function Footer({ locale }: { locale: string }) {
       <div className="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-gutter">
         {/* Brand */}
         <div className="space-y-6">
-          <h2 className="font-headline-lg text-primary-fixed text-headline-lg">
-            Jelly
-          </h2>
+          <Link href={`/${locale}`} className="relative inline-block">
+            <Image
+              src="/brand/jelly-logo-white.png"
+              alt="Jelly logo"
+              width={140}
+              height={50}
+              className="h-auto w-[110px] sm:w-[140px]"
+            />
+          </Link>
           <p className="font-body-md text-body-md opacity-80">
             Spreading happiness one step at a time with premium materials and
             playful designs.
