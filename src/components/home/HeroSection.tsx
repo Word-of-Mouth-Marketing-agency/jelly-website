@@ -13,10 +13,10 @@ export default function HeroSection() {
           make you smile. Experience the joy of walking on clouds.
         </p>
         <div className="flex flex-wrap gap-4">
-          <button className="bg-primary-container text-on-primary-container px-8 py-4 rounded-full font-label-lg text-label-lg sticker-border hover:scale-105 transition-all active:scale-95">
+          <button className="bg-primary-container text-black px-8 py-4 rounded-full font-label-lg text-label-lg sticker-border hover:scale-105 transition-all active:scale-95">
             Shop Now
           </button>
-          <button className="bg-white text-on-surface-variant px-8 py-4 rounded-full font-label-lg text-label-lg sticker-border hover:scale-105 transition-all active:scale-95">
+          <button className="bg-white text-black px-8 py-4 rounded-full font-label-lg text-label-lg sticker-border hover:scale-105 transition-all active:scale-95">
             Explore Collection
           </button>
         </div>

@@ -159,80 +159,71 @@
 }
 
 .wom-marquee {
-  background: #fbe902;
+  width: 100%;
+  overflow: hidden;
+  padding: 16px 0;
+  background: #FBE902;
   border-top: 1px solid #000;
   border-bottom: 1px solid #000;
-  overflow: hidden;
-  padding: 12px 0;
-}
-
-@media (min-width: 768px) {
-  .wom-marquee {
-    padding: 16px 0;
-  }
+  user-select: none;
 }
 
 .wom-marquee__track {
   display: flex;
   width: max-content;
-  animation: wom-marquee-scroll 20s linear infinite;
-}
-
-@media (min-width: 768px) {
-  .wom-marquee__track {
-    animation-duration: 24s;
-  }
-}
-
-.wom-marquee__group {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
+  animation: wom-marquee-scroll 24s linear infinite reverse;
+  will-change: transform;
 }
 
 .wom-marquee__content {
   display: flex;
   align-items: center;
-  gap: 0.35em;
-  color: #000;
-  font-weight: 400;
-  font-size: clamp(18px, 5.5vw, 30px);
+  flex: 0 0 auto;
+  gap: clamp(16px, 2vw, 30px);
+  padding-right: clamp(16px, 2vw, 30px);
   white-space: nowrap;
-  padding-right: 0.35em;
 }
 
-@media (min-width: 768px) {
-  .wom-marquee__content {
-    font-size: clamp(20px, 3vw, 44px);
-  }
+.wom-marquee__content span {
+  display: inline-block;
+  font-size: clamp(20px, 3vw, 44px);
+  font-weight: 400;
+  line-height: 1;
+  color: #000000;
 }
 
 .wom-marquee__icon {
-  font-size: clamp(32px, 8vw, 44px);
+  font-size: clamp(34px, 4.5vw, 76px) !important;
+  font-weight: 400 !important;
   line-height: 1;
-}
-
-@media (min-width: 768px) {
-  .wom-marquee__icon {
-    font-size: clamp(34px, 4.5vw, 76px);
-  }
-}
-
-/* ─── Button Text Color ───────────────────────────────────────────────────── */
-
-button,
-[type="button"],
-[type="submit"],
-[type="reset"] {
   color: #000000 !important;
 }
 
-button:disabled,
-[type="button"]:disabled,
-[type="submit"]:disabled,
-[type="reset"]:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+@media only screen and (max-width: 767px) {
+  .wom-marquee {
+    padding: 12px 0;
+    background: #FBE902;
+  }
+
+  .wom-marquee__track {
+    animation-duration: 20s;
+  }
+
+  .wom-marquee__content {
+    gap: 14px;
+    padding-right: 14px;
+  }
+
+  .wom-marquee__content span {
+    font-size: clamp(18px, 5.5vw, 30px);
+    font-weight: 400;
+    color: #000000;
+  }
+
+  .wom-marquee__icon {
+    font-size: clamp(32px, 8vw, 44px) !important;
+    color: #000000 !important;
+  }
 }
 
 /* ─── Base Styles ─────────────────────────────────────────────────────────── */

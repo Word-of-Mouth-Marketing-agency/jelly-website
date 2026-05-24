@@ -37,7 +37,7 @@ export default function ProductCard({
       <div className="inline-block px-3 py-1 bg-brand-cyan rounded-full font-bold text-label-sm mb-4">
         {product.price}
       </div>
-      <button className="w-full bg-primary-container text-on-primary-container py-2 rounded-full font-label-lg text-label-lg sticker-border hover:bg-primary-fixed-dim transition-colors">
+      <button className="w-full bg-primary-container text-black py-2 rounded-full font-label-lg text-label-lg sticker-border hover:bg-primary-fixed-dim transition-colors">
         Add to Cart
       </button>
     </div>

@@ -1,27 +1,27 @@
 export default function MarqueeBanner() {
-  const items = [
-    "Comfort in Every Color",
-    "Socks That Make You Smile",
-    "Step Into Joy",
-  ];
-
   const content = (
     <>
-      {items.map((item, i) => (
-        <span key={i} className="wom-marquee__content">
-          {item}
-          <span className="wom-marquee__icon" aria-hidden="true">&#10022;</span>
-        </span>
-      ))}
+      <span>Comfort in Every Color</span>
+      <span className="wom-marquee__icon">&#10022;</span>
+      <span>Socks That Make You Smile</span>
+      <span className="wom-marquee__icon">&#10022;</span>
+      <span>Step Into Joy</span>
+      <span className="wom-marquee__icon">&#10022;</span>
+      <span>Comfort in Every Color</span>
+      <span className="wom-marquee__icon">&#10022;</span>
+      <span>Socks That Make You Smile</span>
+      <span className="wom-marquee__icon">&#10022;</span>
+      <span>Step Into Joy</span>
+      <span className="wom-marquee__icon">&#10022;</span>
     </>
   );
 
   return (
-    <section className="wom-marquee">
+    <div className="wom-marquee">
       <div className="wom-marquee__track">
-        <div className="wom-marquee__group">{content}</div>
-        <div className="wom-marquee__group">{content}</div>
+        <div className="wom-marquee__content">{content}</div>
+        <div className="wom-marquee__content" aria-hidden="true">{content}</div>
       </div>
-    </section>
+    </div>
   );
 }

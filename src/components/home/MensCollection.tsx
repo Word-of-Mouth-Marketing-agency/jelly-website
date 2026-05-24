@@ -36,7 +36,7 @@ export default function MensCollection() {
           <h2 className="font-headline-lg text-headline-lg mb-6">
             Men&apos;s Collection
           </h2>
-          <button className="bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-label-lg text-label-lg sticker-border hover:scale-105 transition-all">
+          <button className="bg-primary-container text-black px-6 py-3 rounded-full font-label-lg text-label-lg sticker-border hover:scale-105 transition-all">
             Shop Men&apos;s
           </button>
         </div>

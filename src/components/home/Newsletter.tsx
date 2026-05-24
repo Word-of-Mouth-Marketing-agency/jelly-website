@@ -15,7 +15,7 @@ export default function Newsletter() {
           />
           <button
             type="submit"
-            className="w-full sm:w-auto bg-primary-container text-on-primary-container px-10 py-4 rounded-full font-label-lg text-label-lg sticker-border hover:scale-105 transition-all"
+            className="w-full sm:w-auto bg-primary-container text-black px-10 py-4 rounded-full font-label-lg text-label-lg sticker-border hover:scale-105 transition-all"
           >
             Subscribe
           </button>
