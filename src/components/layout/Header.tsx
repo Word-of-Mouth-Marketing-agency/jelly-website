@@ -70,16 +70,26 @@ export default function Header() {
 
         {/* Search + icons */}
         <div className="flex items-center gap-4">
-          <div className="relative hidden sm:block">
+          <form
+            action={`/${locale}/search`}
+            className="relative hidden sm:block"
+          >
             <input
+              name="q"
               type="text"
               placeholder="Search..."
               className="bg-surface-container rounded-full px-6 py-2 border-2 border-outline focus:outline-none focus:ring-2 focus:ring-primary w-48 lg:w-64"
             />
-            <span className="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">
-              search
-            </span>
-          </div>
+            <button
+              type="submit"
+              aria-label="Search"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary"
+            >
+              <span className="material-symbols-outlined text-[20px]">
+                search
+              </span>
+            </button>
+          </form>
 
           <div className="flex items-center gap-4">
             <Link

@@ -1,10 +1,16 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getProductBySlug, getRelatedProducts } from "@/lib/products";
+import {
+  getProductBySlug,
+  getRelatedProducts,
+  getWishlistProductIds,
+} from "@/lib/products";
 import ImageGallery from "@/components/catalog/ImageGallery";
 import VariantSelector from "@/components/catalog/VariantSelector";
 import CatalogProductCard from "@/components/catalog/CatalogProductCard";
+import WishlistToggle from "@/components/catalog/WishlistToggle";
+import { auth } from "@/auth";
 
 export async function generateMetadata({
   params,
@@ -31,11 +37,15 @@ export default async function ProductPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
+  const session = await auth();
   const product = await getProductBySlug(slug);
 
   if (!product) notFound();
 
-  const related = await getRelatedProducts(product.id, product.category.id, 4);
+  const [related, wishlistIds] = await Promise.all([
+    getRelatedProducts(product.id, product.category.id, 4),
+    getWishlistProductIds(session?.user?.id),
+  ]);
 
   const isRtl = locale === "ar";
   const name = isRtl ? product.nameAr : product.nameEn;
@@ -110,6 +120,13 @@ export default async function ProductPage({
               <span className="inline-block px-5 py-2.5 bg-brand-cyan rounded-full font-bold text-headline-md">
                 {priceDisplay}
               </span>
+              <WishlistToggle
+                productId={product.id}
+                initialActive={wishlistIds.has(product.id)}
+                hasSession={Boolean(session)}
+                locale={locale}
+                className="h-11 w-11"
+              />
               {product.isFeatured && (
                 <span className="flex items-center gap-1 text-sm font-semibold text-primary">
                   <span className="material-symbols-outlined text-[18px]">
@@ -160,6 +177,8 @@ export default async function ProductPage({
                   key={relatedProduct.id}
                   product={relatedProduct}
                   locale={locale}
+                  isWishlisted={wishlistIds.has(relatedProduct.id)}
+                  hasSession={Boolean(session)}
                 />
               ))}
             </div>

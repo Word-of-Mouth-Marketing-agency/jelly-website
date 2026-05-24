@@ -5,8 +5,10 @@ import {
   getCategories,
   getCategoryBySlug,
   getProductsByCategory,
+  getWishlistProductIds,
 } from "@/lib/products";
 import CatalogProductCard from "@/components/catalog/CatalogProductCard";
+import { auth } from "@/auth";
 
 export async function generateMetadata({
   params,
@@ -32,10 +34,12 @@ export default async function CategoryPage({
 }) {
   const { locale, slug } = await params;
 
-  const [category, products, categories] = await Promise.all([
+  const session = await auth();
+  const [category, products, categories, wishlistIds] = await Promise.all([
     getCategoryBySlug(slug),
     getProductsByCategory(slug),
     getCategories(),
+    getWishlistProductIds(session?.user?.id),
   ]);
 
   if (!category) notFound();
@@ -120,6 +124,8 @@ export default async function CategoryPage({
                 key={product.id}
                 product={product}
                 locale={locale}
+                isWishlisted={wishlistIds.has(product.id)}
+                hasSession={Boolean(session)}
               />
             ))}
           </div>
