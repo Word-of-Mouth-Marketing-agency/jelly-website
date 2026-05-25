@@ -196,7 +196,7 @@
   font-size: clamp(34px, 4.5vw, 76px) !important;
   font-weight: 400 !important;
   line-height: 1;
-  color: #000000 !important;
+  color: #000000;
 }
 
 @media only screen and (max-width: 767px) {
@@ -222,14 +222,11 @@
 
   .wom-marquee__icon {
     font-size: clamp(32px, 8vw, 44px) !important;
-    color: #000000 !important;
+    color: #000000;
   }
 }
 
-.wom-marquee--white .wom-marquee__content span,
-.wom-marquee--white .wom-marquee__icon {
-  color: #ffffff !important;
-}
+/* White text modifier — used via inline style in CrossingMarquees.tsx */
 
 /* ─── Base Styles ─────────────────────────────────────────────────────────── */
 

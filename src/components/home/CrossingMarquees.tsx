@@ -6,17 +6,17 @@ const ITEMS = [
   "FREE SHIPPING",
 ];
 
-function MarqueeContent() {
+function MarqueeContent({ textColor = "#000000" }: { textColor?: string }) {
   return (
     <>
       {ITEMS.map((item) => (
-        <span key={item}>{item}</span>
+        <span key={item} style={{ color: textColor }}>{item}</span>
       ))}
-      <span className="wom-marquee__icon">&#10022;</span>
+      <span className="wom-marquee__icon" style={{ color: textColor }}>&#10022;</span>
       {ITEMS.map((item) => (
-        <span key={`dup-${item}`}>{item}</span>
+        <span key={`dup-${item}`} style={{ color: textColor }}>{item}</span>
       ))}
-      <span className="wom-marquee__icon">&#10022;</span>
+      <span className="wom-marquee__icon" style={{ color: textColor }}>&#10022;</span>
     </>
   );
 }
@@ -30,9 +30,10 @@ function MarqueeBand({
   background: string;
   whiteText?: boolean;
 }) {
+  const textColor = whiteText ? "#ffffff" : "#000000";
   return (
     <div
-      className={`wom-marquee${whiteText ? " wom-marquee--white" : ""}`}
+      className="wom-marquee"
       style={{ background, width: "150%" }}
     >
       <div
@@ -40,10 +41,10 @@ function MarqueeBand({
         style={{ animationDirection: reverse ? undefined : "normal" }}
       >
         <div className="wom-marquee__content">
-          <MarqueeContent />
+          <MarqueeContent textColor={textColor} />
         </div>
         <div className="wom-marquee__content" aria-hidden="true">
-          <MarqueeContent />
+          <MarqueeContent textColor={textColor} />
         </div>
       </div>
     </div>
