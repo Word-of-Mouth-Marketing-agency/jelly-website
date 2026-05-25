@@ -2,6 +2,7 @@ import HeroSection from "@/components/home/HeroSection";
 import MarqueeBanner from "@/components/home/MarqueeBanner";
 import CategoryRow from "@/components/home/CategoryRow";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
+import JellyPromiseSection from "@/components/home/JellyPromiseSection";
 import NewArrivals from "@/components/home/NewArrivals";
 import BestSellers from "@/components/home/BestSellers";
 import CrossingMarquees from "@/components/home/CrossingMarquees";
@@ -79,6 +80,7 @@ export default async function HomePage({
         wishlistIds={wishlistIds}
         hasSession={!!session}
       />
+      <JellyPromiseSection locale={locale} />
       <NewArrivals
         products={newArrivals}
         locale={locale}
