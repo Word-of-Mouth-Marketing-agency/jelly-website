@@ -12,6 +12,7 @@ import CatalogProductCard from "@/components/catalog/CatalogProductCard";
 import WishlistToggle from "@/components/catalog/WishlistToggle";
 import { auth } from "@/auth";
 import { ArrowLeft, ChevronRight, Star } from "lucide-react";
+import StorefrontContainer from "@/components/layout/StorefrontContainer";
 import { createMetadata } from "@/lib/metadata";
 
 export async function generateMetadata({
@@ -67,7 +68,7 @@ export default async function ProductPage({
 
   return (
     <div className="min-h-screen" dir={isRtl ? "rtl" : "ltr"}>
-      <div className="max-w-container-max mx-auto px-margin-desktop pt-8 pb-4">
+      <StorefrontContainer className="pt-8 pb-4" as="div">
         <nav
           className="text-sm text-on-surface-variant flex items-center gap-1.5 flex-wrap"
           aria-label="breadcrumb"
@@ -90,9 +91,9 @@ export default async function ProductPage({
             {name}
           </span>
         </nav>
-      </div>
+      </StorefrontContainer>
 
-      <div className="max-w-container-max mx-auto px-margin-desktop py-8">
+      <StorefrontContainer className="py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-start">
           <ImageGallery
             images={product.images}
@@ -161,11 +162,11 @@ export default async function ProductPage({
             </div>
           </div>
         </div>
-      </div>
+      </StorefrontContainer>
 
       {related.length > 0 && (
         <div className="bg-surface-container-low mt-16 py-16">
-          <div className="max-w-container-max mx-auto px-margin-desktop">
+          <StorefrontContainer as="div">
             <h2 className="font-headline-lg text-headline-lg text-on-surface mb-8">
               You might also like
             </h2>
@@ -180,7 +181,7 @@ export default async function ProductPage({
                 />
               ))}
             </div>
-          </div>
+          </StorefrontContainer>
         </div>
       )}
     </div>

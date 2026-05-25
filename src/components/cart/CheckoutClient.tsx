@@ -3,6 +3,7 @@
 import { clearLocalCart, readLocalCart } from "@/lib/client-cart";
 import type { CartQuote } from "@/lib/cart";
 import { money } from "@/lib/money";
+import StorefrontContainer from "@/components/layout/StorefrontContainer";
 import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
@@ -106,7 +107,7 @@ export default function CheckoutClient({ locale }: Props) {
   const items = quote?.items ?? [];
 
   return (
-    <div className="max-w-container-max mx-auto px-margin-desktop py-12">
+    <StorefrontContainer className="py-12" as="div">
       <form
         onSubmit={submitOrder}
         className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-gutter"
@@ -222,6 +223,6 @@ export default function CheckoutClient({ locale }: Props) {
           </button>
         </aside>
       </form>
-    </div>
+    </StorefrontContainer>
   );
 }

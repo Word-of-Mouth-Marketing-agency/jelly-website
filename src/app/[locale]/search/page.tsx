@@ -9,6 +9,7 @@ import {
 import type { Metadata } from "next";
 import { ChevronRight, SearchX } from "lucide-react";
 import Link from "next/link";
+import StorefrontContainer from "@/components/layout/StorefrontContainer";
 import { createMetadata } from "@/lib/metadata";
 
 type SearchParams = Record<string, string | string[] | undefined>;
@@ -88,7 +89,7 @@ export default async function SearchPage({
   return (
     <div className="min-h-screen">
       <div className="bg-surface-container-high border-b border-outline-variant">
-        <div className="max-w-container-max mx-auto px-margin-desktop py-12">
+        <StorefrontContainer className="py-12" as="div">
           <nav
             className="text-sm text-on-surface-variant mb-4 flex items-center gap-1.5"
             aria-label="breadcrumb"
@@ -108,10 +109,10 @@ export default async function SearchPage({
           <p className="text-on-surface-variant font-body-md text-body-md">
             {products.length} {products.length === 1 ? "product" : "products"}
           </p>
-        </div>
+        </StorefrontContainer>
       </div>
 
-      <div className="max-w-container-max mx-auto px-margin-desktop py-12">
+      <StorefrontContainer className="py-12">
         <form
           action={`/${locale}/search`}
           className="bg-white rounded-2xl sticker-border p-5 mb-10 grid grid-cols-1 md:grid-cols-6 gap-4"
@@ -268,7 +269,7 @@ export default async function SearchPage({
             ))}
           </div>
         )}
-      </div>
+      </StorefrontContainer>
     </div>
   );
 }

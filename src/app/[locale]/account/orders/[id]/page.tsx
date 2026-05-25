@@ -9,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import type { Metadata } from "next";
+import StorefrontContainer from "@/components/layout/StorefrontContainer";
 import { createMetadata } from "@/lib/metadata";
 
 export async function generateMetadata({
@@ -52,7 +53,7 @@ export default async function OrderDetailPage({
   return (
     <div className="min-h-screen">
       <div className="bg-surface-container-high border-b border-outline-variant">
-        <div className="max-w-container-max mx-auto px-margin-desktop py-12">
+        <StorefrontContainer className="py-12" as="div">
           <Link
             href={`/${locale}/account/orders`}
             className="text-sm font-semibold text-primary hover:underline"
@@ -63,10 +64,10 @@ export default async function OrderDetailPage({
             {number}
           </h1>
           <p className="text-on-surface-variant">Status: {order.status}</p>
-        </div>
+        </StorefrontContainer>
       </div>
 
-      <div className="max-w-container-max mx-auto px-margin-desktop py-12 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-gutter">
+      <StorefrontContainer className="py-12 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-gutter">
         <section className="space-y-4">
           {order.items.map((item) => {
             const image = item.product.images[0]?.url;
@@ -148,7 +149,7 @@ export default async function OrderDetailPage({
             </a>
           )}
         </aside>
-      </div>
+      </StorefrontContainer>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ProductSummary } from "@/lib/products";
 import HomeProductCard from "./HomeProductCard";
+import StorefrontContainer from "@/components/layout/StorefrontContainer";
 
 interface Props {
   products: ProductSummary[];
@@ -16,7 +17,7 @@ export default function NewArrivals({
   hasSession,
 }: Props) {
   return (
-    <section className="max-w-container-max mx-auto px-margin-desktop mb-section-gap">
+    <StorefrontContainer className="mb-section-gap">
       <div className="grid grid-cols-1 md:grid-cols-5 gap-gutter">
         {/* Heading column */}
         <div className="md:pt-12">
@@ -43,6 +44,6 @@ export default function NewArrivals({
           />
         ))}
       </div>
-    </section>
+    </StorefrontContainer>
   );
 }

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import StorefrontContainer from "@/components/layout/StorefrontContainer";
 
 const IMAGES = [
   "https://lh3.googleusercontent.com/aida/ADBb0uicyrnk7OIRliABbGOIgZDHBdY-Qu-aBxtfe6ux19mSgOi9-u6T0NYZFMriblRPiaMRMuqcq040nl7CUcvY9KlvxDIAfD23UHpTupqFo2iS1bnf5DfKjGgXpbB4RA0ShDV-08cr6M3T8h7cNKXlgFQcvK8RpHyhd9Mg1lb_Z7BoYmc5MX3jyJHDYq-Xdhws9D05IN3PxhtUYCi9W3wS7qjAAdIbLJUqnnCv2V3V5WIWikixpJ60zNut8R8",
@@ -9,7 +10,7 @@ const IMAGES = [
 
 export default function StyledInJelly() {
   return (
-    <section className="max-w-container-max mx-auto px-margin-desktop mb-section-gap">
+    <StorefrontContainer className="mb-section-gap">
       <h2 className="font-headline-lg text-headline-lg mb-8">
         Styled in Jelly
       </h2>
@@ -31,6 +32,6 @@ export default function StyledInJelly() {
           </div>
         ))}
       </div>
-    </section>
+    </StorefrontContainer>
   );
 }

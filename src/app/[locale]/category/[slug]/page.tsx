@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
+import StorefrontContainer from "@/components/layout/StorefrontContainer";
 import { createMetadata } from "@/lib/metadata";
 import {
   getCategories,
@@ -55,7 +56,7 @@ export default async function CategoryPage({
   return (
     <div className="min-h-screen">
       <div className="bg-surface-container-high border-b border-outline-variant">
-        <div className="max-w-container-max mx-auto px-margin-desktop py-12">
+        <StorefrontContainer className="py-12" as="div">
           <nav
             className="text-sm text-on-surface-variant mb-4 flex items-center gap-1.5 flex-wrap"
             aria-label="breadcrumb"
@@ -76,10 +77,10 @@ export default async function CategoryPage({
           <p className="text-on-surface-variant font-body-md text-body-md">
             {count} {count === 1 ? "product" : "products"}
           </p>
-        </div>
+        </StorefrontContainer>
       </div>
 
-      <div className="max-w-container-max mx-auto px-margin-desktop py-12">
+      <StorefrontContainer className="py-12">
         <div className="mb-8 flex flex-wrap gap-3">
           {categories.map((item) => {
             const active = item.slug === category.slug;
@@ -135,7 +136,7 @@ export default async function CategoryPage({
             ))}
           </div>
         )}
-      </div>
+      </StorefrontContainer>
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { ChevronRight, Heart } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";
+import StorefrontContainer from "@/components/layout/StorefrontContainer";
 import { createMetadata } from "@/lib/metadata";
 
 export async function generateMetadata({
@@ -38,7 +39,7 @@ export default async function WishlistPage({
   return (
     <div className="min-h-screen">
       <div className="bg-surface-container-high border-b border-outline-variant">
-        <div className="max-w-container-max mx-auto px-margin-desktop py-12">
+        <StorefrontContainer className="py-12" as="div">
           <nav
             className="text-sm text-on-surface-variant mb-4 flex items-center gap-1.5"
             aria-label="breadcrumb"
@@ -59,10 +60,10 @@ export default async function WishlistPage({
             {products.length} saved{" "}
             {products.length === 1 ? "product" : "products"}
           </p>
-        </div>
+        </StorefrontContainer>
       </div>
 
-      <div className="max-w-container-max mx-auto px-margin-desktop py-12">
+      <StorefrontContainer className="py-12">
         {products.length === 0 ? (
           <div className="text-center py-24">
             <Heart size={72} strokeWidth={1.75} className="mx-auto mb-6 text-outline-variant" aria-hidden="true" />
@@ -92,7 +93,7 @@ export default async function WishlistPage({
             ))}
           </div>
         )}
-      </div>
+      </StorefrontContainer>
     </div>
   );
 }

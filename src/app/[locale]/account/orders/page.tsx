@@ -5,6 +5,7 @@ import { ReceiptText } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";
+import StorefrontContainer from "@/components/layout/StorefrontContainer";
 import { createMetadata } from "@/lib/metadata";
 
 export async function generateMetadata({
@@ -38,7 +39,7 @@ export default async function OrdersPage({
   return (
     <div className="min-h-screen">
       <div className="bg-surface-container-high border-b border-outline-variant">
-        <div className="max-w-container-max mx-auto px-margin-desktop py-12">
+        <StorefrontContainer className="py-12" as="div">
           <Link
             href={`/${locale}/account`}
             className="text-sm font-semibold text-primary hover:underline"
@@ -51,10 +52,10 @@ export default async function OrdersPage({
           <p className="text-on-surface-variant">
             Your Jelly order history.
           </p>
-        </div>
+        </StorefrontContainer>
       </div>
 
-      <div className="max-w-container-max mx-auto px-margin-desktop py-12">
+      <StorefrontContainer className="py-12">
         {orders.length === 0 ? (
           <div className="text-center py-24">
             <ReceiptText size={72} strokeWidth={1.75} className="mx-auto mb-6 text-outline-variant" aria-hidden="true" />
@@ -96,7 +97,7 @@ export default async function OrdersPage({
             ))}
           </div>
         )}
-      </div>
+      </StorefrontContainer>
     </div>
   );
 }

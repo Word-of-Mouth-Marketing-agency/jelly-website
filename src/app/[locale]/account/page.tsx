@@ -4,6 +4,7 @@ import { money } from "@/lib/money";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";
+import StorefrontContainer from "@/components/layout/StorefrontContainer";
 import { createMetadata } from "@/lib/metadata";
 
 export async function generateMetadata({
@@ -45,17 +46,17 @@ export default async function AccountPage({
   return (
     <div className="min-h-screen">
       <div className="bg-surface-container-high border-b border-outline-variant">
-        <div className="max-w-container-max mx-auto px-margin-desktop py-12">
+        <StorefrontContainer className="py-12" as="div">
           <h1 className="font-display-lg text-display-lg text-on-surface mb-2">
             Welcome, {name}
           </h1>
           <p className="text-on-surface-variant">
             Manage your Jelly profile, wishlist, and sock orders.
           </p>
-        </div>
+        </StorefrontContainer>
       </div>
 
-      <div className="max-w-container-max mx-auto px-margin-desktop py-12 space-y-10">
+      <StorefrontContainer className="py-12 space-y-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
           {[
             ["Orders", stats.orderCount.toString()],
@@ -124,7 +125,7 @@ export default async function AccountPage({
             </div>
           )}
         </section>
-      </div>
+      </StorefrontContainer>
     </div>
   );
 }

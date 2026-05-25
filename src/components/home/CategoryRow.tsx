@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Palette } from "lucide-react";
+import StorefrontContainer from "@/components/layout/StorefrontContainer";
 
 const CATEGORIES = [
   {
@@ -27,7 +28,7 @@ export default function CategoryRow({ locale = "en" }: { locale?: string }) {
   const customLabel = locale === "ar" ? "طلبات مخصصة" : "Custom Orders";
 
   return (
-    <section className="max-w-container-max mx-auto px-margin-desktop mb-20 pt-16">
+    <StorefrontContainer className="mb-20 pt-16">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-gutter">
         {CATEGORIES.map(({ labelEn, labelAr, slug, src }) => {
           const label = locale === "ar" ? labelAr : labelEn;
@@ -71,6 +72,6 @@ export default function CategoryRow({ locale = "en" }: { locale?: string }) {
           </h3>
         </Link>
       </div>
-    </section>
+    </StorefrontContainer>
   );
 }

@@ -36,7 +36,8 @@ export default function Header() {
       </div>
 
       {/* Main nav */}
-      <nav className="max-w-container-max mx-auto px-margin-desktop py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <nav className="px-margin-desktop py-4">
+        <div className="max-w-container-max mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-4">
         {/* Logo + nav links */}
         <div className="flex items-center gap-8 w-full md:w-auto justify-between md:justify-start">
           <Link href={`/${locale}`} className="relative flex-shrink-0">
@@ -122,6 +123,7 @@ export default function Header() {
               </span>
             </Link>
           </div>
+        </div>
         </div>
       </nav>
     </header>

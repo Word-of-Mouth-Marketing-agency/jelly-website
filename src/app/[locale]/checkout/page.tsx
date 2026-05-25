@@ -1,5 +1,6 @@
 import CheckoutClient from "@/components/cart/CheckoutClient";
 import type { Metadata } from "next";
+import StorefrontContainer from "@/components/layout/StorefrontContainer";
 import { createMetadata } from "@/lib/metadata";
 
 export async function generateMetadata({
@@ -26,14 +27,14 @@ export default async function CheckoutPage({
   return (
     <div className="min-h-screen">
       <div className="bg-surface-container-high border-b border-outline-variant">
-        <div className="max-w-container-max mx-auto px-margin-desktop py-12">
+        <StorefrontContainer className="py-12" as="div">
           <h1 className="font-display-lg text-display-lg text-on-surface mb-2">
             Checkout
           </h1>
           <p className="text-on-surface-variant">
             Cash on Delivery only. Guest checkout is welcome.
           </p>
-        </div>
+        </StorefrontContainer>
       </div>
       <CheckoutClient locale={locale} />
     </div>

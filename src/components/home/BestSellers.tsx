@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { ProductSummary } from "@/lib/products";
 import AddToCartButton from "@/components/cart/AddToCartButton";
 import { Shirt } from "lucide-react";
+import StorefrontContainer from "@/components/layout/StorefrontContainer";
 
 interface Props {
   products: ProductSummary[];
@@ -16,7 +17,7 @@ export default function BestSellers({
   locale,
 }: Props) {
   return (
-    <section className="max-w-container-max mx-auto px-margin-desktop mb-section-gap">
+    <StorefrontContainer className="mb-section-gap">
       <h2 className="font-headline-lg text-headline-lg mb-8">
         {locale === "ar" ? "الأكثر مبيعاً" : "Best Sellers"}
       </h2>
@@ -75,6 +76,6 @@ export default function BestSellers({
           );
         })}
       </div>
-    </section>
+    </StorefrontContainer>
   );
 }
