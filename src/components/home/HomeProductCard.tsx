@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import type { ProductSummary } from "@/lib/products";
 import WishlistToggle from "@/components/catalog/WishlistToggle";
 import AddToCartButton from "@/components/cart/AddToCartButton";
@@ -28,6 +29,7 @@ export default function HomeProductCard({
     product.minPrice === product.maxPrice
       ? product.minPrice
       : `${product.minPrice}+`;
+  const [imgError, setImgError] = useState(false);
 
   return (
     <div className="bg-white rounded-2xl p-4 sticker-border group">
@@ -45,13 +47,14 @@ export default function HomeProductCard({
           href={`/${locale}/product/${product.slug}`}
           className="block w-full h-full"
         >
-          {product.primaryImage ? (
+          {product.primaryImage && !imgError ? (
             <Image
               src={product.primaryImage}
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"
               alt={product.altEn ?? name}
               sizes="(max-width: 768px) 50vw, 20vw"
+              onError={() => setImgError(true)}
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center">
