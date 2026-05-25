@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ProductSummary } from "@/lib/products";
 import HomeProductCard from "./HomeProductCard";
 import StorefrontContainer from "@/components/layout/StorefrontContainer";
+import StaggerReveal from "@/components/animations/StaggerReveal";
 
 interface Props {
   products: ProductSummary[];
@@ -18,7 +19,7 @@ export default function FeaturedProducts({
 }: Props) {
   return (
     <StorefrontContainer className="mb-section-gap">
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-gutter">
+      <StaggerReveal className="grid grid-cols-1 md:grid-cols-5 gap-gutter" stagger={0.08}>
         <div className="md:pt-12">
           <h2 className="font-headline-lg text-headline-lg mb-6">
             {locale === "ar" ? "المنتجات المميزة" : "Featured Products"}
@@ -41,7 +42,7 @@ export default function FeaturedProducts({
             hasSession={hasSession}
           />
         ))}
-      </div>
+      </StaggerReveal>
     </StorefrontContainer>
   );
 }

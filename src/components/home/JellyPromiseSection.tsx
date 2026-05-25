@@ -1,5 +1,6 @@
 import Link from "next/link";
 import StorefrontContainer from "@/components/layout/StorefrontContainer";
+import Reveal from "@/components/animations/Reveal";
 
 type Props = {
   locale: string;
@@ -26,7 +27,7 @@ export default function JellyPromiseSection({ locale }: Props) {
   return (
     <section className="mb-section-gap border-y border-secondary bg-[#E8BC44] py-7 md:py-8">
       <StorefrontContainer as="div">
-        <div className="grid items-center gap-7 lg:min-h-[360px] lg:grid-cols-[minmax(0,1.85fr)_minmax(280px,1fr)]">
+        <Reveal className="grid items-center gap-7 lg:min-h-[360px] lg:grid-cols-[minmax(0,1.85fr)_minmax(280px,1fr)]">
           <div className="relative min-h-[240px] overflow-hidden rounded-[2rem] sm:min-h-[300px] lg:min-h-[330px]">
             <div className="absolute inset-x-0 top-1/2 h-[78%] -translate-y-1/2 rounded-[45%_55%_48%_52%/58%_44%_56%_42%] bg-[#FFF7D8]" />
             <div className="absolute -start-10 top-8 h-32 w-44 rounded-full bg-[#FFF7D8] sm:h-44 sm:w-64" />
@@ -58,7 +59,7 @@ export default function JellyPromiseSection({ locale }: Props) {
               </span>
             </Link>
           </div>
-        </div>
+        </Reveal>
       </StorefrontContainer>
     </section>
   );

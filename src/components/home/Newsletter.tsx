@@ -1,7 +1,9 @@
+import Reveal from "@/components/animations/Reveal";
+
 export default function Newsletter() {
   return (
     <section className="bg-brand-blue py-section-gap w-full text-white text-center px-margin-mobile md:px-margin-desktop">
-      <div className="max-w-container-max mx-auto space-y-6">
+      <Reveal className="max-w-container-max mx-auto space-y-6">
         <h2 className="font-display-lg text-display-lg">Join the Joy Club</h2>
         <p className="font-body-lg text-body-lg text-white/90">
           Sign up for our newsletter to the Jelly Club and get 15% off your
@@ -24,7 +26,7 @@ export default function Newsletter() {
             Subscribe
           </button>
         </form>
-      </div>
+      </Reveal>
     </section>
   );
 }

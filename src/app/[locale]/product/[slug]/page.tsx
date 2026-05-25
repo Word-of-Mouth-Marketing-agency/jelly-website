@@ -14,6 +14,7 @@ import { auth } from "@/auth";
 import { ArrowLeft, ChevronRight, Star } from "lucide-react";
 import StorefrontContainer from "@/components/layout/StorefrontContainer";
 import { createMetadata } from "@/lib/metadata";
+import Reveal from "@/components/animations/Reveal";
 
 export async function generateMetadata({
   params,
@@ -95,13 +96,15 @@ export default async function ProductPage({
 
       <StorefrontContainer className="py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-start">
-          <ImageGallery
-            images={product.images}
-            productName={name}
-            locale={locale}
-          />
+          <Reveal>
+            <ImageGallery
+              images={product.images}
+              productName={name}
+              locale={locale}
+            />
+          </Reveal>
 
-          <div className="flex flex-col">
+          <Reveal delay={0.1} className="flex flex-col">
             {product.tags.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-4">
                 {product.tags.map((tag) => (
@@ -160,7 +163,7 @@ export default async function ProductPage({
                 More {categoryName} socks
               </Link>
             </div>
-          </div>
+          </Reveal>
         </div>
       </StorefrontContainer>
 

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Palette } from "lucide-react";
 import StorefrontContainer from "@/components/layout/StorefrontContainer";
+import StaggerReveal from "@/components/animations/StaggerReveal";
 
 const CATEGORIES = [
   {
@@ -29,7 +30,7 @@ export default function CategoryRow({ locale = "en" }: { locale?: string }) {
 
   return (
     <StorefrontContainer className="mb-20 pt-16">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+      <StaggerReveal className="grid grid-cols-2 md:grid-cols-4 gap-gutter">
         {CATEGORIES.map(({ labelEn, labelAr, slug, src }) => {
           const label = locale === "ar" ? labelAr : labelEn;
           return (
@@ -71,7 +72,7 @@ export default function CategoryRow({ locale = "en" }: { locale?: string }) {
             {customLabel}
           </h3>
         </Link>
-      </div>
+      </StaggerReveal>
     </StorefrontContainer>
   );
 }

@@ -2,6 +2,7 @@ import CartClient from "@/components/cart/CartClient";
 import type { Metadata } from "next";
 import StorefrontContainer from "@/components/layout/StorefrontContainer";
 import { createMetadata } from "@/lib/metadata";
+import Reveal from "@/components/animations/Reveal";
 
 export async function generateMetadata({
   params,
@@ -28,12 +29,14 @@ export default async function CartPage({
     <div className="min-h-screen">
       <div className="bg-surface-container-high border-b border-outline-variant">
         <StorefrontContainer className="py-12" as="div">
-          <h1 className="font-display-lg text-display-lg text-on-surface mb-2">
-            Cart
-          </h1>
-          <p className="text-on-surface-variant">
-            Review your socks, coupon, subtotal, and total.
-          </p>
+          <Reveal>
+            <h1 className="font-display-lg text-display-lg text-on-surface mb-2">
+              Cart
+            </h1>
+            <p className="text-on-surface-variant">
+              Review your socks, coupon, subtotal, and total.
+            </p>
+          </Reveal>
         </StorefrontContainer>
       </div>
       <CartClient locale={locale} />

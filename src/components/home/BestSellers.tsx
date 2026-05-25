@@ -5,6 +5,7 @@ import AddToCartButton from "@/components/cart/AddToCartButton";
 import WishlistToggle from "@/components/catalog/WishlistToggle";
 import { Shirt } from "lucide-react";
 import StorefrontContainer from "@/components/layout/StorefrontContainer";
+import StaggerReveal from "@/components/animations/StaggerReveal";
 
 interface Props {
   products: ProductSummary[];
@@ -24,7 +25,7 @@ export default function BestSellers({
       <h2 className="font-headline-lg text-headline-lg mb-8">
         {locale === "ar" ? "الأكثر مبيعاً" : "Best Sellers"}
       </h2>
-      <div className="flex flex-col md:flex-row gap-6">
+      <StaggerReveal className="flex flex-col md:flex-row gap-6" stagger={0.12}>
         {products.map((product) => {
           const name = locale === "ar" ? product.nameAr : product.nameEn;
           const price =
@@ -85,7 +86,7 @@ export default function BestSellers({
             </div>
           );
         })}
-      </div>
+      </StaggerReveal>
     </StorefrontContainer>
   );
 }
