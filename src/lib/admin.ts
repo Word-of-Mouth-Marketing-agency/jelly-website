@@ -346,7 +346,6 @@ export async function archiveProduct(id: string) {
 
 export async function getAdminCategories() {
   const rows = await prisma.category.findMany({
-    where: { isActive: true },
     include: {
       _count: { select: { products: true } },
     },

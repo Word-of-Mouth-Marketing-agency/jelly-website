@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Plus, Pencil, Archive, ImageOff, Package } from "lucide-react";
+import { Plus, Pencil, Archive, RotateCcw, ImageOff, Package } from "lucide-react";
 
 type AdminCategory = {
   id: string;
@@ -90,6 +90,21 @@ export default function AdminCategoriesPage() {
 
   async function archive(id: string) {
     const res = await fetch(`/api/admin/categories/${id}`, { method: "DELETE" });
+    if (res.ok) {
+      const refresh = await fetch("/api/admin/categories");
+      if (refresh.ok) {
+        const data = await refresh.json();
+        setCategories(Array.isArray(data) ? data : []);
+      }
+    }
+  }
+
+  async function restore(id: string) {
+    const res = await fetch(`/api/admin/categories/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ isActive: true }),
+    });
     if (res.ok) {
       const refresh = await fetch("/api/admin/categories");
       if (refresh.ok) {
@@ -239,7 +254,7 @@ export default function AdminCategoriesPage() {
                           ? "bg-green-50 text-green-700"
                           : "bg-gray-100 text-gray-600"
                       }`}>
-                        {cat.isActive ? "Active" : "Inactive"}
+                        {cat.isActive ? "Active" : "Archived"}
                       </span>
                     </td>
                     <td className="px-4 py-3">
@@ -251,13 +266,23 @@ export default function AdminCategoriesPage() {
                           <Pencil size={14} aria-hidden="true" />
                           Edit
                         </button>
-                        <button
-                          onClick={() => archive(cat.id)}
-                          className="inline-flex items-center gap-1 text-sm font-semibold text-error hover:text-error/80 transition"
-                        >
-                          <Archive size={14} aria-hidden="true" />
-                          Archive
-                        </button>
+                        {cat.isActive ? (
+                          <button
+                            onClick={() => archive(cat.id)}
+                            className="inline-flex items-center gap-1 text-sm font-semibold text-error hover:text-error/80 transition"
+                          >
+                            <Archive size={14} aria-hidden="true" />
+                            Archive
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => restore(cat.id)}
+                            className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary/80 transition"
+                          >
+                            <RotateCcw size={14} aria-hidden="true" />
+                            Restore
+                          </button>
+                        )}
                       </div>
                     </td>
                   </tr>

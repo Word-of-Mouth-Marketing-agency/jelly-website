@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Plus, Trash2, Star, ImageOff } from "lucide-react";
 
-type Category = { id: string; nameEn: string; nameAr: string; slug: string };
+type Category = { id: string; nameEn: string; nameAr: string; slug: string; isActive: boolean };
 type Tag = { id: string; nameEn: string; nameAr: string };
 type Size = { id: string; label: string };
 type Color = { id: string; nameEn: string; nameAr: string; hex: string };
@@ -224,7 +224,7 @@ export default function ProductForm({ productId }: { productId?: string }) {
                 required
               >
                 <option value="">Select category</option>
-                {categories.map((c) => (
+                {categories.filter((c) => c.isActive).map((c) => (
                   <option key={c.id} value={c.id}>{c.nameEn}</option>
                 ))}
               </select>

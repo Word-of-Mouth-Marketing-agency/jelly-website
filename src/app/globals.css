@@ -226,6 +226,11 @@
   }
 }
 
+.wom-marquee--white .wom-marquee__content span,
+.wom-marquee--white .wom-marquee__icon {
+  color: #ffffff !important;
+}
+
 /* ─── Base Styles ─────────────────────────────────────────────────────────── */
 
 html {

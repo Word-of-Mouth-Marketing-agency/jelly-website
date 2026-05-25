@@ -24,13 +24,15 @@ function MarqueeContent() {
 function MarqueeBand({
   reverse = false,
   background,
+  whiteText = false,
 }: {
   reverse?: boolean;
   background: string;
+  whiteText?: boolean;
 }) {
   return (
     <div
-      className="wom-marquee"
+      className={`wom-marquee${whiteText ? " wom-marquee--white" : ""}`}
       style={{ background, width: "150%" }}
     >
       <div
@@ -53,7 +55,7 @@ export default function CrossingMarquees() {
     <section className="relative w-full overflow-hidden py-32 my-[-60px] h-[300px] flex items-center justify-center">
       {/* Blue band — rotated -3deg, scrolls right to left */}
       <div className="absolute inset-0 flex items-center justify-center -rotate-3 z-10">
-        <MarqueeBand background="#0066EE" />
+        <MarqueeBand background="#0066EE" whiteText />
       </div>
 
       {/* Yellow band — rotated +3deg, scrolls left to right */}
