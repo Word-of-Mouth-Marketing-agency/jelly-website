@@ -38,7 +38,7 @@ export default function CategoryRow({ locale = "en" }: { locale?: string }) {
               href={`/${locale}/category/${slug}`}
               className="group block"
             >
-              <div className="relative rounded-2xl overflow-hidden sticker-border mb-4 aspect-video">
+              <div className="relative rounded-2xl overflow-hidden sticker-border mb-4 aspect-[3/4] md:aspect-video">
                 <Image
                   src={src}
                   fill
@@ -59,7 +59,7 @@ export default function CategoryRow({ locale = "en" }: { locale?: string }) {
           href={`/${locale}/custom-orders`}
           className="group block"
         >
-          <div className="relative rounded-2xl overflow-hidden sticker-border mb-4 aspect-video flex items-center justify-center bg-[#FBE902]">
+          <div className="relative rounded-2xl overflow-hidden sticker-border mb-4 aspect-[3/4] md:aspect-video flex items-center justify-center bg-[#FBE902]">
             <Palette
               size={48}
               strokeWidth={1.5}

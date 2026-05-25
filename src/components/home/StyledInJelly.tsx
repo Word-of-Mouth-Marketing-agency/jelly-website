@@ -18,6 +18,7 @@ export default function StyledInJelly() {
         {IMAGES.map((src, i) => (
           <div
             key={i}
+            role="presentation"
             className="aspect-square rounded-2xl overflow-hidden sticker-border group"
           >
             <div className="relative w-full h-full">
@@ -25,7 +26,7 @@ export default function StyledInJelly() {
                 src={src}
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-500"
-                alt={`Styled in Jelly ${i + 1}`}
+                alt=""
                 sizes="(max-width: 768px) 50vw, 25vw"
               />
             </div>
