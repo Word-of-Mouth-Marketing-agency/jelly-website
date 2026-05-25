@@ -39,6 +39,7 @@ export default function MensCollection({
               key={product.id}
               product={product}
               locale={locale}
+              showWishlist
               isWishlisted={wishlistIds.has(product.id)}
               hasSession={hasSession}
             />

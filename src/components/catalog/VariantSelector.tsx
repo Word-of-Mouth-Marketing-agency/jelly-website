@@ -101,7 +101,7 @@ export default function VariantSelector({ variants, locale = "en" }: Props) {
                   aria-label={label}
                   title={label}
                   disabled={!inStock}
-                  className={`w-9 h-9 rounded-full border-[3px] transition-all ${
+                  className={`w-11 h-11 rounded-full border-[3px] transition-all ${
                     selected
                       ? "border-primary scale-110 shadow-lg"
                       : "border-transparent hover:border-outline hover:scale-105"

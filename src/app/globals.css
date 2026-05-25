@@ -53,6 +53,7 @@
   --color-on-tertiary-container: #007274;
   --color-brand-blue: #0066EE;
   --color-brand-cyan: #00FFFF;
+  --color-whatsapp: #25D366;
   --color-white: #ffffff;
   --color-black: #000000;
 
@@ -223,6 +224,12 @@
   .wom-marquee__icon {
     font-size: clamp(32px, 8vw, 44px) !important;
     color: #000000;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wom-marquee__track {
+    animation-play-state: paused;
   }
 }
 

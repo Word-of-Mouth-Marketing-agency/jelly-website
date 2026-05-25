@@ -149,7 +149,8 @@ export default function CartClient({ locale }: Props) {
                     <div className="flex items-center gap-2">
                       <button
                         type="button"
-                        className="h-9 w-9 rounded-full border-2 border-outline-variant"
+                        aria-label={`Decrease quantity for ${item.nameEn}`}
+                        className="h-11 w-11 rounded-full border-2 border-outline-variant"
                         onClick={() => updateItem(item.variantId, item.quantity - 1)}
                       >
                         -
@@ -159,7 +160,8 @@ export default function CartClient({ locale }: Props) {
                       </span>
                       <button
                         type="button"
-                        className="h-9 w-9 rounded-full border-2 border-outline-variant"
+                        aria-label={`Increase quantity for ${item.nameEn}`}
+                        className="h-11 w-11 rounded-full border-2 border-outline-variant"
                         disabled={item.quantity >= item.stock}
                         onClick={() => updateItem(item.variantId, item.quantity + 1)}
                       >

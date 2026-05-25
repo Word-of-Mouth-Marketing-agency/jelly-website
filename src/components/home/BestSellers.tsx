@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ProductSummary } from "@/lib/products";
 import AddToCartButton from "@/components/cart/AddToCartButton";
+import WishlistToggle from "@/components/catalog/WishlistToggle";
 import { Shirt } from "lucide-react";
 import StorefrontContainer from "@/components/layout/StorefrontContainer";
 
@@ -15,6 +16,8 @@ interface Props {
 export default function BestSellers({
   products,
   locale,
+  wishlistIds,
+  hasSession,
 }: Props) {
   return (
     <StorefrontContainer className="mb-section-gap">
@@ -55,6 +58,13 @@ export default function BestSellers({
                     />
                   </div>
                 )}
+                <WishlistToggle
+                  productId={product.id}
+                  initialActive={wishlistIds.has(product.id)}
+                  hasSession={hasSession}
+                  locale={locale}
+                  className="absolute top-2 right-2 z-10 h-9 w-9"
+                />
               </Link>
               <div className="flex-1 p-8 md:p-12 flex flex-col justify-center items-start z-10">
                 <Link href={`/${locale}/product/${product.slug}`}>
@@ -62,9 +72,9 @@ export default function BestSellers({
                     {name}
                   </h3>
                 </Link>
-                <p className="font-headline-md text-headline-md text-on-surface-variant mb-6 font-bold">
+                <div className="inline-block px-3 py-1 bg-brand-cyan rounded-full font-bold text-label-sm mb-6">
                   {price}
-                </p>
+                </div>
                 <AddToCartButton
                   variantId={product.defaultVariantId}
                   locale={locale}
