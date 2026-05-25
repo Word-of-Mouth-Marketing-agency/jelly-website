@@ -68,5 +68,5 @@ export const proxy = auth(function middleware(request: AuthRequest) {
 });
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };
