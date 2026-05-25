@@ -86,7 +86,7 @@ export type CatalogFilterOptions = {
 // ─── Internal Helpers ─────────────────────────────────────────────────────────
 
 function fmt(val: { toString(): string }): string {
-  return `$${parseFloat(val.toString()).toFixed(2)}`;
+  return `EGP ${parseFloat(val.toString()).toFixed(2)}`;
 }
 
 function priceRange(prices: Array<{ toString(): string }>): {
@@ -96,14 +96,14 @@ function priceRange(prices: Array<{ toString(): string }>): {
   maxValue: number;
 } {
   if (!prices.length) {
-    return { min: "$0.00", max: "$0.00", minValue: 0, maxValue: 0 };
+    return { min: "EGP 0.00", max: "EGP 0.00", minValue: 0, maxValue: 0 };
   }
   const nums = prices.map((p) => parseFloat(p.toString()));
   const minValue = Math.min(...nums);
   const maxValue = Math.max(...nums);
   return {
-    min: `$${minValue.toFixed(2)}`,
-    max: `$${maxValue.toFixed(2)}`,
+    min: `EGP ${minValue.toFixed(2)}`,
+    max: `EGP ${maxValue.toFixed(2)}`,
     minValue,
     maxValue,
   };

@@ -29,7 +29,7 @@ export default function Footer({ locale }: { locale: string }) {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-black text-white py-section-gap px-margin-desktop rounded-t-xl">
+    <footer className="bg-black text-white py-section-gap px-margin-desktop">
       <div className="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-gutter">
         {/* Brand */}
         <div className="space-y-6">

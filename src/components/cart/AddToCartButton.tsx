@@ -53,7 +53,7 @@ export default function AddToCartButton({
         type="button"
         disabled={!variantId || disabled || isPending}
         onClick={addToCart}
-        className={`bg-primary-container text-on-primary-container rounded-full font-label-lg text-label-lg sticker-border hover:bg-primary-fixed-dim transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
+        className={`bg-primary-container text-black rounded-full font-label-lg text-label-lg sticker-border hover:bg-primary-fixed-dim transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
       >
         {isPending ? "Adding..." : "Add to Cart"}
       </button>

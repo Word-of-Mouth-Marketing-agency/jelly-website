@@ -1,3 +1,3 @@
 export function money(value: number) {
-  return `$${value.toFixed(2)}`;
+  return `EGP ${value.toFixed(2)}`;
 }

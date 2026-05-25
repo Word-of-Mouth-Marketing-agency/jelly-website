@@ -32,7 +32,7 @@ export default function Header() {
     >
       {/* Announcement bar */}
       <div className="bg-brand-blue text-white text-center py-2 px-4 font-label-lg text-label-lg">
-        Free Standard Shipping on Orders $75+
+        Free Standard Shipping on Orders EGP 75+
       </div>
 
       {/* Main nav */}

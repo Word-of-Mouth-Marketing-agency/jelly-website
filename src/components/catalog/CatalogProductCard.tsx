@@ -58,38 +58,40 @@ export default function CatalogProductCard({
             </div>
           )}
         </div>
+      </Link>
 
-        {product.tags.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mb-2">
-            {product.tags.slice(0, 2).map((tag) => (
-              <span
-                key={tag.nameEn}
-                className="text-[10px] font-bold uppercase tracking-wider text-on-surface-variant bg-surface-container-high px-2 py-0.5 rounded-full"
-              >
-                {isRtl ? tag.nameAr : tag.nameEn}
-              </span>
-            ))}
-          </div>
-        )}
+      {product.tags.length > 0 && (
+        <div className="flex flex-wrap gap-1.5 mb-2">
+          {product.tags.slice(0, 2).map((tag) => (
+            <span
+              key={tag.nameEn}
+              className="text-[10px] font-bold uppercase tracking-wider text-on-surface-variant bg-surface-container-high px-2 py-0.5 rounded-full"
+            >
+              {isRtl ? tag.nameAr : tag.nameEn}
+            </span>
+          ))}
+        </div>
+      )}
 
-        <h3 className="font-label-lg text-label-lg text-on-surface mb-2 truncate">
+      <Link href={`/${locale}/product/${product.slug}`}>
+        <h3 className="font-label-lg text-label-lg text-on-surface mb-2 truncate hover:text-primary transition-colors">
           {name}
         </h3>
-
-        <div className="flex items-center justify-between">
-          <span className="inline-block px-3 py-1 bg-brand-cyan rounded-full font-bold text-label-sm">
-            {price}
-          </span>
-          {product.isFeatured && (
-            <Star
-              size={18}
-              strokeWidth={2.25}
-              className="text-primary"
-              aria-hidden="true"
-            />
-          )}
-        </div>
       </Link>
+
+      <div className="flex items-center justify-between">
+        <span className="inline-block px-3 py-1 bg-brand-cyan rounded-full font-bold text-label-sm">
+          {price}
+        </span>
+        {product.isFeatured && (
+          <Star
+            size={18}
+            strokeWidth={2.25}
+            className="text-primary"
+            aria-hidden="true"
+          />
+        )}
+      </div>
       <AddToCartButton
         variantId={product.defaultVariantId}
         locale={locale}

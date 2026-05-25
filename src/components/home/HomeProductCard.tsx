@@ -68,7 +68,9 @@ export default function HomeProductCard({
           )}
         </Link>
       </div>
-      <h4 className="font-body-lg text-body-lg mb-1 truncate">{name}</h4>
+      <Link href={`/${locale}/product/${product.slug}`}>
+        <h4 className="font-body-lg text-body-lg mb-1 truncate hover:text-primary transition-colors">{name}</h4>
+      </Link>
       <div className="inline-block px-3 py-1 bg-brand-cyan rounded-full font-bold text-label-sm mb-4">
         {price}
       </div>

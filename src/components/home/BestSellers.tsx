@@ -56,9 +56,11 @@ export default function BestSellers({
                 )}
               </Link>
               <div className="flex-1 p-8 md:p-12 flex flex-col justify-center items-start z-10">
-                <h3 className="font-headline-md text-headline-md mb-2 font-bold">
-                  {name}
-                </h3>
+                <Link href={`/${locale}/product/${product.slug}`}>
+                  <h3 className="font-headline-md text-headline-md mb-2 font-bold hover:text-primary transition-colors">
+                    {name}
+                  </h3>
+                </Link>
                 <p className="font-headline-md text-headline-md text-on-surface-variant mb-6 font-bold">
                   {price}
                 </p>
