@@ -139,7 +139,7 @@ export default function ProductForm({ productId }: { productId?: string }) {
       router.refresh();
     } else {
       const data = await res.json().catch(() => ({ error: "Failed to save product." }));
-      setMessage(data.error || "Failed to save product.");
+      setMessage(data.error || data.details?.fieldErrors?.join(" ") || "Failed to save product.");
     }
     setSaving(false);
   }

@@ -81,7 +81,8 @@ export async function PATCH(
     return NextResponse.json(product);
   } catch (err) {
     console.error("Failed to update product:", err);
-    return NextResponse.json({ error: "Failed to update product." }, { status: 500 });
+    const message = err instanceof Error ? err.message : "Failed to update product.";
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }
 

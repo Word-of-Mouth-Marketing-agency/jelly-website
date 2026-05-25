@@ -277,20 +277,59 @@ export async function updateProduct(
       }
     }
 
-    // Replace variants if provided
+    // Update variants: update existing by ID, create new, safely delete unused
     if (data.variants) {
-      await tx.variant.deleteMany({ where: { productId: id } });
+      const existingVariants = await tx.variant.findMany({
+        where: { productId: id },
+        select: { id: true },
+      });
+      const existingIds = new Set(existingVariants.map((v) => v.id));
+      const payloadIds = new Set(data.variants.map((v) => v.id).filter(Boolean) as string[]);
+
       for (const v of data.variants) {
-        await tx.variant.create({
-          data: {
-            productId: id,
-            sizeId: v.sizeId,
-            colorId: v.colorId,
-            price: v.price,
-            stock: v.stock,
-            sku: v.sku,
-          },
+        if (v.id && existingIds.has(v.id)) {
+          await tx.variant.update({
+            where: { id: v.id },
+            data: {
+              sizeId: v.sizeId,
+              colorId: v.colorId,
+              price: v.price,
+              stock: v.stock,
+              sku: v.sku,
+            },
+          });
+        } else {
+          await tx.variant.create({
+            data: {
+              productId: id,
+              sizeId: v.sizeId,
+              colorId: v.colorId,
+              price: v.price,
+              stock: v.stock,
+              sku: v.sku,
+            },
+          });
+        }
+      }
+
+      const toDelete = Array.from(existingIds).filter((vid) => !payloadIds.has(vid));
+      if (toDelete.length > 0) {
+        const referencedCarts = await tx.cartItem.findMany({
+          where: { variantId: { in: toDelete } },
+          select: { variantId: true },
         });
+        const referencedOrders = await tx.orderItem.findMany({
+          where: { variantId: { in: toDelete } },
+          select: { variantId: true },
+        });
+        const referencedIds = new Set([
+          ...referencedCarts.map((r) => r.variantId),
+          ...referencedOrders.map((r) => r.variantId),
+        ]);
+        const safeToDelete = toDelete.filter((vid) => !referencedIds.has(vid));
+        if (safeToDelete.length > 0) {
+          await tx.variant.deleteMany({ where: { id: { in: safeToDelete } } });
+        }
       }
     }
 
@@ -307,6 +346,7 @@ export async function archiveProduct(id: string) {
 
 export async function getAdminCategories() {
   const rows = await prisma.category.findMany({
+    where: { isActive: true },
     include: {
       _count: { select: { products: true } },
     },
