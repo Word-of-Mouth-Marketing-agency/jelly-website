@@ -1,8 +1,8 @@
 import HeroSection from "@/components/home/HeroSection";
 import MarqueeBanner from "@/components/home/MarqueeBanner";
 import CategoryRow from "@/components/home/CategoryRow";
+import FeaturedProducts from "@/components/home/FeaturedProducts";
 import NewArrivals from "@/components/home/NewArrivals";
-import MensCollection from "@/components/home/MensCollection";
 import BestSellers from "@/components/home/BestSellers";
 import CrossingMarquees from "@/components/home/CrossingMarquees";
 import StyledInJelly from "@/components/home/StyledInJelly";
@@ -11,7 +11,6 @@ import { auth } from "@/auth";
 import {
   getFeaturedProducts,
   getNewestProducts,
-  getProductsByCategory,
   getWishlistProductIds,
 } from "@/lib/products";
 import { createMetadata } from "@/lib/metadata";
@@ -41,29 +40,31 @@ export default async function HomePage({
   const session = await auth();
   const userId = session?.user?.id;
 
-  const [newArrivals, mensProducts, bestSellers, wishlistIds] =
+  const [featuredProducts, newArrivals, wishlistIds] =
     await Promise.all([
+      getFeaturedProducts(6),
       getNewestProducts(4),
-      getProductsByCategory("men").then((p) => p.slice(0, 4)),
-      getFeaturedProducts(2),
       userId
         ? getWishlistProductIds(userId)
         : Promise.resolve(new Set<string>()),
     ]);
+
+  const bestSellers = featuredProducts.slice(4, 6);
+  const featuredRow = featuredProducts.slice(0, 4);
 
   return (
     <>
       <HeroSection locale={locale} />
       <MarqueeBanner />
       <CategoryRow locale={locale} />
-      <NewArrivals
-        products={newArrivals}
+      <FeaturedProducts
+        products={featuredRow}
         locale={locale}
         wishlistIds={wishlistIds}
         hasSession={!!session}
       />
-      <MensCollection
-        products={mensProducts}
+      <NewArrivals
+        products={newArrivals}
         locale={locale}
         wishlistIds={wishlistIds}
         hasSession={!!session}
