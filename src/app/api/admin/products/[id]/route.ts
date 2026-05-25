@@ -79,7 +79,8 @@ export async function PATCH(
     await updateProduct(id, parsed.data);
     const product = await getAdminProductById(id);
     return NextResponse.json(product);
-  } catch {
+  } catch (err) {
+    console.error("Failed to update product:", err);
     return NextResponse.json({ error: "Failed to update product." }, { status: 500 });
   }
 }

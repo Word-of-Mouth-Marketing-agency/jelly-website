@@ -10,6 +10,7 @@ import {
   DollarSign,
   Clock,
   AlertTriangle,
+  ImageOff,
 } from "lucide-react";
 
 export default async function AdminDashboardPage() {
@@ -106,9 +107,19 @@ export default async function AdminDashboardPage() {
                   key={product.id}
                   className="flex items-center gap-4 rounded-xl border border-outline-variant p-3 hover:border-primary transition"
                 >
-                  <div className="w-12 h-12 rounded-lg bg-surface-container overflow-hidden relative flex-shrink-0">
-                    {product.primaryImage && (
-                      <img src={product.primaryImage} alt={product.nameEn} className="w-full h-full object-cover" />
+                  <div className="w-12 h-12 rounded-lg bg-surface-container overflow-hidden relative flex-shrink-0 flex items-center justify-center">
+                    {product.primaryImage ? (
+                      <>
+                        <img
+                          src={product.primaryImage}
+                          alt={product.nameEn}
+                          className="w-full h-full object-cover absolute inset-0 z-10"
+                          onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                        />
+                        <ImageOff size={18} className="text-outline-variant" />
+                      </>
+                    ) : (
+                      <ImageOff size={18} className="text-outline-variant" />
                     )}
                   </div>
                   <div className="flex-1 min-w-0">

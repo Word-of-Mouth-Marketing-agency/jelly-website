@@ -80,7 +80,8 @@ export async function POST(request: Request) {
   try {
     const product = await createProduct(parsed.data);
     return NextResponse.json({ id: product.id, slug: product.slug }, { status: 201 });
-  } catch {
+  } catch (err) {
+    console.error("Failed to create product:", err);
     return NextResponse.json({ error: "Failed to create product." }, { status: 500 });
   }
 }

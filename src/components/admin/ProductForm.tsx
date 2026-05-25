@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Plus, Trash2, Star } from "lucide-react";
+import { Plus, Trash2, Star, ImageOff } from "lucide-react";
 
 type Category = { id: string; nameEn: string; nameAr: string; slug: string };
 type Tag = { id: string; nameEn: string; nameAr: string };
@@ -360,8 +360,14 @@ export default function ProductForm({ productId }: { productId?: string }) {
                 </button>
               )}
               {img.url && (
-                <div className="w-12 h-12 rounded-lg bg-surface-container overflow-hidden hidden md:block">
-                  <img src={img.url} alt="" className="w-full h-full object-cover" />
+                <div className="w-12 h-12 rounded-lg bg-surface-container overflow-hidden hidden md:block relative flex items-center justify-center">
+                  <img
+                    src={img.url}
+                    alt=""
+                    className="w-full h-full object-cover absolute inset-0 z-10"
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                  />
+                  <ImageOff size={18} className="text-outline-variant" />
                 </div>
               )}
             </div>

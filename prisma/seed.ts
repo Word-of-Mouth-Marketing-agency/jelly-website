@@ -44,17 +44,6 @@ async function main() {
           "https://lh3.googleusercontent.com/aida-public/AB6AXuCFWpZoJCagvbVGUqMOBPo0zj9MF-vCi6ywJ5oKsxU4gDLANDEJBpFQfG6yoCUJBXa7eE14LSPYX3kUFJRFkAKrJcjHF3w_5sMSUHHkw7nIsTv0xMv_E7h7z3n4dUOvX2c_BFiQ6z3Nk03jGiPEINkb0PxuL2eLbQOPkQzDC-FBViwCIMx1GsY8C2yZBqG2FzM-D6dqJOkr5OXI65BKnLqFJpGPnQkZnNbRHGfSfX1sKEBNqEqFy3Gv_eEYW9pbbS43uQdlv3B5bBRMV4hAOG8S48LZLN2MBwJA",
       },
     }),
-    prisma.category.upsert({
-      where: { slug: "unisex" },
-      update: {},
-      create: {
-        nameEn: "Unisex",
-        nameAr: "للجنسين",
-        slug: "unisex",
-        image:
-          "https://lh3.googleusercontent.com/aida-public/AB6AXuCzpGQzCfVlQKhCjkF6DQ9xJF7WC1TFqPzTqrJm7i7DP3-V6L5M4rO7rn3h-qJECE-BsMAvRGJBHRvLh0Y5r0VpE8Dh2Yz4WzQ",
-      },
-    }),
   ]);
 
   const [menCat, womenCat, kidsCat] = categories;

@@ -20,12 +20,6 @@ const CATEGORIES = [
     slug: "kids",
     src: "https://lh3.googleusercontent.com/aida-public/AB6AXuBVfKxGfgPtnh1z0fvReqyUuJc9F1GPO3hRwRIHHdtrKpt9pTSCgm8Zer5_bxkd5sS8F7mcFZSt7hAFeLx73JzCGTDkJ2554J6wXcw6FDys7mhBLGylpOOT-hIzkuq57MNTv1h6qD02WLHJrYEfsNGrVc-kNhUX3QGfScvVMImzdqM_aBX5A7hKvL64NpnPM5pg3HXYMMNmY_Wv-QLrjEuOsh9AXUdNoJYlxBIUgPDgjx_sHXPMRpRemepPprMVa4rH_HlG4k4eWnI",
   },
-  {
-    labelEn: "Unisex",
-    labelAr: "للجنسين",
-    slug: "unisex",
-    src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAWzg6kz1LDMv9aoHMD0Qt_j7D6SKwKeKkPSH6EpGTY2bbGtXAx9LKOLy5OmmhHC1ypFh8gFEjU80d-JddYjTADhPcVAlPfu1SjLTJUxPWtgTYo375xgch8Oz8bizMbfXNpk46rtFyNX_EyGyunyRIYkLM3n-Iy2q2GChNmSUN5cxjbLK6nSNWZkWCkscaqeRxGa9FKseEWiEYb5MwVQG6P0MtHniEMOfCkCXnw3JhnRQ5NcFNhhnC8GAmS-RCUlEQTpzmmSp4PGe4",
-  },
 ];
 
 export default function CategoryRow({ locale = "en" }: { locale?: string }) {

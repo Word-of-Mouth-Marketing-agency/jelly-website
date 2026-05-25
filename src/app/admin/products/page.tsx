@@ -174,11 +174,19 @@ export default function AdminProductsPage() {
                   <tr key={product.id} className="border-b border-outline-variant/50 hover:bg-surface-container-high/30 transition">
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-surface-container overflow-hidden relative flex-shrink-0">
+                        <div className="w-10 h-10 rounded-lg bg-surface-container overflow-hidden relative flex-shrink-0 flex items-center justify-center">
                           {product.primaryImage ? (
-                            <img src={product.primaryImage} alt={product.nameEn} className="w-full h-full object-cover" />
+                            <>
+                              <img
+                                src={product.primaryImage}
+                                alt={product.nameEn}
+                                className="w-full h-full object-cover absolute inset-0 z-10"
+                                onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                              />
+                              <ImageOff size={18} className="text-outline-variant" />
+                            </>
                           ) : (
-                            <ImageOff size={18} className="absolute inset-0 m-auto text-outline-variant" />
+                            <ImageOff size={18} className="text-outline-variant" />
                           )}
                         </div>
                         <div className="min-w-0">

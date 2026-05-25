@@ -253,24 +253,26 @@ export async function updateProduct(
     // Replace images if provided
     if (data.images) {
       await tx.productImage.deleteMany({ where: { productId: id } });
-      await tx.productImage.createMany({
-        data: data.images.map((img, i) => ({
-          productId: id,
-          url: img.url,
-          altEn: img.altEn,
-          altAr: img.altAr,
-          isPrimary: img.isPrimary ?? i === 0,
-          position: img.position ?? i,
-        })),
-      });
+      for (const [i, img] of data.images.entries()) {
+        await tx.productImage.create({
+          data: {
+            productId: id,
+            url: img.url,
+            altEn: img.altEn || null,
+            altAr: img.altAr || null,
+            isPrimary: img.isPrimary ?? i === 0,
+            position: img.position ?? i,
+          },
+        });
+      }
     }
 
     // Replace tags if provided
     if (data.tags) {
       await tx.productTag.deleteMany({ where: { productId: id } });
-      if (data.tags.length > 0) {
-        await tx.productTag.createMany({
-          data: data.tags.map((tagId) => ({ productId: id, tagId })),
+      for (const tagId of data.tags) {
+        await tx.productTag.create({
+          data: { productId: id, tagId },
         });
       }
     }
@@ -278,16 +280,18 @@ export async function updateProduct(
     // Replace variants if provided
     if (data.variants) {
       await tx.variant.deleteMany({ where: { productId: id } });
-      await tx.variant.createMany({
-        data: data.variants.map((v) => ({
-          productId: id,
-          sizeId: v.sizeId,
-          colorId: v.colorId,
-          price: v.price,
-          stock: v.stock,
-          sku: v.sku,
-        })),
-      });
+      for (const v of data.variants) {
+        await tx.variant.create({
+          data: {
+            productId: id,
+            sizeId: v.sizeId,
+            colorId: v.colorId,
+            price: v.price,
+            stock: v.stock,
+            sku: v.sku,
+          },
+        });
+      }
     }
 
     return tx.product.findUnique({ where: { id } });

@@ -11,7 +11,6 @@ const NAV_LINKS = [
   { label: "Men", slug: "men" },
   { label: "Women", slug: "women" },
   { label: "Kids", slug: "kids" },
-  { label: "Unisex", slug: "unisex" },
 ];
 
 export default function Header() {
