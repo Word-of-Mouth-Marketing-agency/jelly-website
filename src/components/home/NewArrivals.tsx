@@ -19,8 +19,8 @@ export default function NewArrivals({
   return (
     <StorefrontContainer className="mb-section-gap">
       <div className="grid grid-cols-1 md:grid-cols-5 gap-gutter">
-        {/* Heading column — md:order-last places it right side on desktop, DOM-first keeps it above cards on mobile */}
-        <div className="md:pt-12 md:order-last">
+        {/* Heading column */}
+        <div className="md:pt-12">
           <h2 className="font-headline-lg text-headline-lg mb-6">
             {locale === "ar" ? "وصول جديد" : "New Arrivals"}
           </h2>
