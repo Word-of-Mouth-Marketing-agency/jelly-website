@@ -11,7 +11,7 @@ export default function Newsletter() {
           <input
             type="email"
             placeholder="Enter your address"
-            className="w-full sm:w-96 rounded-full px-8 py-4 text-on-surface border-2 border-transparent focus:border-primary-fixed focus:outline-none focus:ring-0"
+            className="w-full sm:w-96 rounded-full px-8 py-4 bg-white text-black border-2 border-black placeholder:text-gray-500 focus:border-primary-fixed focus:outline-none focus:ring-0"
           />
           <button
             type="submit"

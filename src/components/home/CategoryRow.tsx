@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Palette } from "lucide-react";
 
 const CATEGORIES = [
   {
@@ -23,6 +24,8 @@ const CATEGORIES = [
 ];
 
 export default function CategoryRow({ locale = "en" }: { locale?: string }) {
+  const customLabel = locale === "ar" ? "طلبات مخصصة" : "Custom Orders";
+
   return (
     <section className="max-w-container-max mx-auto px-margin-desktop mb-20 pt-16">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-gutter">
@@ -49,6 +52,24 @@ export default function CategoryRow({ locale = "en" }: { locale?: string }) {
             </Link>
           );
         })}
+
+        {/* Custom Orders card */}
+        <Link
+          href={`/${locale}/custom-orders`}
+          className="group block"
+        >
+          <div className="relative rounded-2xl overflow-hidden sticker-border mb-4 aspect-video flex items-center justify-center bg-[#FBE902]">
+            <Palette
+              size={48}
+              strokeWidth={1.5}
+              className="text-black group-hover:scale-110 transition-transform duration-500"
+              aria-hidden="true"
+            />
+          </div>
+          <h3 className="font-headline-md text-headline-md text-center">
+            {customLabel}
+          </h3>
+        </Link>
       </div>
     </section>
   );
