@@ -3,9 +3,9 @@ import Link from "next/link";
 
 export default function HeroSection({ locale }: { locale: string }) {
   return (
-    <section className="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 items-center">
+    <section className="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-2 min-h-[400px] md:min-h-[600px]">
       {/* Text */}
-      <div className="space-y-8 px-margin-desktop py-16 md:py-0">
+      <div className="flex flex-col justify-center space-y-8 py-16 md:py-0">
         <h1 className="font-display-lg text-display-lg text-on-surface max-w-md">
           {locale === "ar"
             ? "جوارب تجعلك تبتسم"
@@ -33,7 +33,7 @@ export default function HeroSection({ locale }: { locale: string }) {
       </div>
 
       {/* Image */}
-      <div className="relative overflow-hidden min-h-[400px] md:min-h-[600px]">
+      <div className="relative overflow-hidden w-full min-h-[400px] md:h-full">
         <Image
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGO72FJS633FWIh4tMHr48y9dv50QqIgoLT6Qd5En6M0w2M0_jdcVktekLnsZITAul-AM2Yn09ZWn4GU0mMSFXZ3tc7mykUklM5PNO3HK5Gq2hDUWiXQjYa58hjNqsbzXyVeTyXxtKjFH8M7jHcybGS3eZcAZpdkdnn6mNRU32KwutSvarDc05rJW08WakUPzRriyaFX4j69F41lAAC__BVhSJFRFkPFM-5KOIzNM-9gsbB26MeXiUZnIAsAkEyNAyHTxAYQ_9NWk"
           fill

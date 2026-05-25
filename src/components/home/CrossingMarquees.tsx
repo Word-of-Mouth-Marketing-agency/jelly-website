@@ -34,7 +34,7 @@ function MarqueeBand({
   return (
     <div
       className="wom-marquee"
-      style={{ background, width: "150%" }}
+      style={{ background }}
     >
       <div
         className="wom-marquee__track"
@@ -53,14 +53,14 @@ function MarqueeBand({
 
 export default function CrossingMarquees() {
   return (
-    <section className="relative w-full overflow-hidden py-32 my-[-60px] h-[300px] flex items-center justify-center">
+    <section className="relative w-full py-32 my-[-60px] h-[300px] flex items-center justify-center">
       {/* Blue band — rotated -3deg, scrolls right to left */}
-      <div className="absolute inset-0 flex items-center justify-center -rotate-3 z-10">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130vw] flex items-center justify-center -rotate-3 z-10">
         <MarqueeBand background="#0066EE" whiteText />
       </div>
 
       {/* Yellow band — rotated +3deg, scrolls left to right */}
-      <div className="absolute inset-0 flex items-center justify-center rotate-3 z-20">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130vw] flex items-center justify-center rotate-3 z-20">
         <MarqueeBand background="#FBE902" reverse />
       </div>
     </section>
