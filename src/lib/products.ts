@@ -396,6 +396,16 @@ export async function getFeaturedProducts(limit = 8): Promise<ProductSummary[]> 
   return rows.map(toSummary);
 }
 
+export async function getNewestProducts(limit = 4): Promise<ProductSummary[]> {
+  const rows = await prisma.product.findMany({
+    where: { isActive: true },
+    take: limit,
+    include: summaryInclude,
+    orderBy: { createdAt: "desc" },
+  });
+  return rows.map(toSummary);
+}
+
 export async function getWishlistProductIds(userId?: string | null) {
   if (!userId) return new Set<string>();
 

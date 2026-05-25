@@ -1,24 +1,34 @@
 import Image from "next/image";
+import Link from "next/link";
 
-export default function HeroSection() {
+export default function HeroSection({ locale }: { locale: string }) {
   return (
     <section className="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 items-center">
       {/* Text */}
       <div className="space-y-8 px-margin-desktop py-16 md:py-0">
         <h1 className="font-display-lg text-display-lg text-on-surface max-w-md">
-          Socks that make you smile
+          {locale === "ar"
+            ? "جوارب تجعلك تبتسم"
+            : "Socks that make you smile"}
         </h1>
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
-          Supportive layers with our comfortable materials. Socks you need and
-          make you smile. Experience the joy of walking on clouds.
+          {locale === "ar"
+            ? "طبقات داعمة مع موادنا المريحة. جوارب تحتاجها وتجعلك تبتسم. جرب متعة المشي على السحاب."
+            : "Supportive layers with our comfortable materials. Socks you need and make you smile. Experience the joy of walking on clouds."}
         </p>
         <div className="flex flex-wrap gap-4">
-          <button className="bg-primary-container text-black px-8 py-4 rounded-full font-label-lg text-label-lg sticker-border hover:scale-105 transition-all active:scale-95">
-            Shop Now
-          </button>
-          <button className="bg-white text-black px-8 py-4 rounded-full font-label-lg text-label-lg sticker-border hover:scale-105 transition-all active:scale-95">
-            Explore Collection
-          </button>
+          <Link
+            href={`/${locale}/category/women`}
+            className="bg-primary-container text-black px-8 py-4 rounded-full font-label-lg text-label-lg sticker-border hover:scale-105 transition-all active:scale-95 inline-block text-center"
+          >
+            {locale === "ar" ? "تسوقي الآن" : "Shop Now"}
+          </Link>
+          <Link
+            href={`/${locale}/search`}
+            className="bg-white text-black px-8 py-4 rounded-full font-label-lg text-label-lg sticker-border hover:scale-105 transition-all active:scale-95 inline-block text-center"
+          >
+            {locale === "ar" ? "استكشفي المجموعة" : "Explore Collection"}
+          </Link>
         </div>
       </div>
 

@@ -7,6 +7,13 @@ import BestSellers from "@/components/home/BestSellers";
 import CrossingMarquees from "@/components/home/CrossingMarquees";
 import StyledInJelly from "@/components/home/StyledInJelly";
 import Newsletter from "@/components/home/Newsletter";
+import { auth } from "@/auth";
+import {
+  getFeaturedProducts,
+  getNewestProducts,
+  getProductsByCategory,
+  getWishlistProductIds,
+} from "@/lib/products";
 import { createMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 
@@ -31,15 +38,42 @@ export default async function HomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const session = await auth();
+  const userId = session?.user?.id;
+
+  const [newArrivals, mensProducts, bestSellers, wishlistIds] =
+    await Promise.all([
+      getNewestProducts(4),
+      getProductsByCategory("men").then((p) => p.slice(0, 4)),
+      getFeaturedProducts(2),
+      userId
+        ? getWishlistProductIds(userId)
+        : Promise.resolve(new Set<string>()),
+    ]);
 
   return (
     <>
-      <HeroSection />
+      <HeroSection locale={locale} />
       <MarqueeBanner />
       <CategoryRow locale={locale} />
-      <NewArrivals />
-      <MensCollection />
-      <BestSellers />
+      <NewArrivals
+        products={newArrivals}
+        locale={locale}
+        wishlistIds={wishlistIds}
+        hasSession={!!session}
+      />
+      <MensCollection
+        products={mensProducts}
+        locale={locale}
+        wishlistIds={wishlistIds}
+        hasSession={!!session}
+      />
+      <BestSellers
+        products={bestSellers}
+        locale={locale}
+        wishlistIds={wishlistIds}
+        hasSession={!!session}
+      />
       <CrossingMarquees />
       <StyledInJelly />
       <Newsletter />
