@@ -13,7 +13,7 @@ export default function StorefrontContainer({
   ...rest
 }: Props) {
   return (
-    <Component className={`px-margin-desktop ${className}`} {...rest}>
+    <Component className={`px-margin-mobile md:px-margin-desktop ${className}`} {...rest}>
       <div className="max-w-container-max mx-auto w-full">
         {children}
       </div>

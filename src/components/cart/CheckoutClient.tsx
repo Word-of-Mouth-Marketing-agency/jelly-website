@@ -107,122 +107,142 @@ export default function CheckoutClient({ locale }: Props) {
   const items = quote?.items ?? [];
 
   return (
-    <StorefrontContainer className="py-12" as="div">
-      <form
-        onSubmit={submitOrder}
-        className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-gutter"
-      >
-        <section className="bg-white rounded-2xl sticker-border p-6">
-          <h2 className="font-headline-md text-headline-md mb-6">
-            Customer information
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {[
-              ["name", "Full name"],
-              ["email", "Email"],
-              ["phone", "Phone"],
-              ["city", "City"],
-            ].map(([key, label]) => (
-              <label key={key}>
+    <>
+      <StorefrontContainer className="pt-12 pb-20 lg:pb-12" as="div">
+        <form
+          id="checkout-form"
+          onSubmit={submitOrder}
+          className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-gutter"
+        >
+          <section className="bg-white rounded-2xl sticker-border p-6">
+            <h2 className="font-headline-md text-headline-md mb-6">
+              Customer information
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {[
+                ["name", "Full name"],
+                ["email", "Email"],
+                ["phone", "Phone"],
+                ["city", "City"],
+              ].map(([key, label]) => (
+                <label key={key}>
+                  <span className="block text-sm font-semibold text-on-surface-variant mb-2">
+                    {label}
+                  </span>
+                  <input
+                    required
+                    type={key === "email" ? "email" : "text"}
+                    placeholder={
+                      key === "email" ? data?.user?.email ?? "" : undefined
+                    }
+                    value={customer[key as keyof typeof customer]}
+                    onChange={(event) =>
+                      setCustomer((current) => ({
+                        ...current,
+                        [key]: event.target.value,
+                      }))
+                    }
+                    className="w-full rounded-lg border-2 border-outline-variant px-4 py-2.5 focus:border-primary focus:outline-none"
+                  />
+                </label>
+              ))}
+              <label className="md:col-span-2">
                 <span className="block text-sm font-semibold text-on-surface-variant mb-2">
-                  {label}
+                  Delivery address
                 </span>
-                <input
+                <textarea
                   required
-                  type={key === "email" ? "email" : "text"}
-                  placeholder={
-                    key === "email" ? data?.user?.email ?? "" : undefined
-                  }
-                  value={customer[key as keyof typeof customer]}
+                  value={customer.address}
                   onChange={(event) =>
                     setCustomer((current) => ({
                       ...current,
-                      [key]: event.target.value,
+                      address: event.target.value,
                     }))
                   }
-                  className="w-full rounded-lg border-2 border-outline-variant px-4 py-2.5 focus:border-primary focus:outline-none"
+                  className="min-h-28 w-full rounded-lg border-2 border-outline-variant px-4 py-2.5 focus:border-primary focus:outline-none"
                 />
               </label>
-            ))}
-            <label className="md:col-span-2">
-              <span className="block text-sm font-semibold text-on-surface-variant mb-2">
-                Delivery address
-              </span>
-              <textarea
-                required
-                value={customer.address}
-                onChange={(event) =>
-                  setCustomer((current) => ({
-                    ...current,
-                    address: event.target.value,
-                  }))
-                }
-                className="min-h-28 w-full rounded-lg border-2 border-outline-variant px-4 py-2.5 focus:border-primary focus:outline-none"
+            </div>
+
+            <div className="mt-8 rounded-2xl bg-surface-container p-5">
+              <h3 className="font-bold mb-2">Payment method</h3>
+              <p className="text-sm text-on-surface-variant">
+                Cash on Delivery. You will pay when your order arrives.
+              </p>
+            </div>
+          </section>
+
+          <aside className="bg-white rounded-2xl sticker-border p-6 h-fit">
+            <h2 className="font-headline-md text-headline-md mb-5">Order</h2>
+            <div className="space-y-3 mb-5">
+              {items.map((item) => (
+                <div key={item.variantId} className="flex justify-between gap-3 text-sm">
+                  <span>
+                    {locale === "ar" ? item.nameAr : item.nameEn} x {item.quantity}
+                  </span>
+                  <span className="font-semibold">{money(item.lineTotal)}</span>
+                </div>
+              ))}
+            </div>
+            <div className="flex gap-2 mb-5">
+              <input
+                value={couponCode}
+                onChange={(event) => setCouponCode(event.target.value)}
+                placeholder="Coupon code"
+                className="min-w-0 flex-1 rounded-lg border-2 border-outline-variant px-3 py-2"
               />
-            </label>
-          </div>
-
-          <div className="mt-8 rounded-2xl bg-surface-container p-5">
-            <h3 className="font-bold mb-2">Payment method</h3>
-            <p className="text-sm text-on-surface-variant">
-              Cash on Delivery. You will pay when your order arrives.
-            </p>
-          </div>
-        </section>
-
-        <aside className="bg-white rounded-2xl sticker-border p-6 h-fit">
-          <h2 className="font-headline-md text-headline-md mb-5">Order</h2>
-          <div className="space-y-3 mb-5">
-            {items.map((item) => (
-              <div key={item.variantId} className="flex justify-between gap-3 text-sm">
-                <span>
-                  {locale === "ar" ? item.nameAr : item.nameEn} x {item.quantity}
-                </span>
-                <span className="font-semibold">{money(item.lineTotal)}</span>
+              <button
+                type="button"
+                onClick={() => loadQuote(couponCode)}
+                className="rounded-full bg-primary-container px-4 font-bold sticker-border"
+              >
+                Apply
+              </button>
+            </div>
+            {quote?.couponError && (
+              <p className="text-sm text-error mb-4">{quote.couponError}</p>
+            )}
+            <div className="space-y-3 text-sm">
+              <div className="flex justify-between">
+                <span>Subtotal</span>
+                <span>{money(quote?.subtotal ?? 0)}</span>
               </div>
-            ))}
-          </div>
-          <div className="flex gap-2 mb-5">
-            <input
-              value={couponCode}
-              onChange={(event) => setCouponCode(event.target.value)}
-              placeholder="Coupon code"
-              className="min-w-0 flex-1 rounded-lg border-2 border-outline-variant px-3 py-2"
-            />
+              <div className="flex justify-between">
+                <span>Discount</span>
+                <span>-{money(quote?.discount ?? 0)}</span>
+              </div>
+              <div className="flex justify-between border-t border-outline-variant pt-3 text-lg font-black">
+                <span>Total</span>
+                <span>{money(quote?.total ?? 0)}</span>
+              </div>
+            </div>
+            {error && <p className="mt-4 text-sm text-error">{error}</p>}
             <button
-              type="button"
-              onClick={() => loadQuote(couponCode)}
-              className="rounded-full bg-primary-container px-4 font-bold sticker-border"
+              disabled={isPending || items.length === 0}
+              className="mt-6 w-full bg-primary-container text-on-primary-container px-8 py-3 rounded-full font-label-lg text-label-lg sticker-border disabled:opacity-50 hidden lg:block"
             >
-              Apply
+              Place order
             </button>
-          </div>
-          {quote?.couponError && (
-            <p className="text-sm text-error mb-4">{quote.couponError}</p>
-          )}
-          <div className="space-y-3 text-sm">
-            <div className="flex justify-between">
-              <span>Subtotal</span>
-              <span>{money(quote?.subtotal ?? 0)}</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Discount</span>
-              <span>-{money(quote?.discount ?? 0)}</span>
-            </div>
-            <div className="flex justify-between border-t border-outline-variant pt-3 text-lg font-black">
-              <span>Total</span>
-              <span>{money(quote?.total ?? 0)}</span>
-            </div>
-          </div>
-          {error && <p className="mt-4 text-sm text-error">{error}</p>}
-          <button
-            disabled={isPending || items.length === 0}
-            className="mt-6 w-full bg-primary-container text-on-primary-container px-8 py-3 rounded-full font-label-lg text-label-lg sticker-border disabled:opacity-50"
-          >
-            Place order
-          </button>
-        </aside>
-      </form>
-    </StorefrontContainer>
+          </aside>
+        </form>
+      </StorefrontContainer>
+
+      {/* Sticky CTA for mobile — uses HTML5 form attribute to submit checkout-form */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-white border-t border-outline-variant px-4 py-3">
+        {error && (
+          <p className="text-sm text-error mb-2" role="alert">
+            {error}
+          </p>
+        )}
+        <button
+          form="checkout-form"
+          type="submit"
+          disabled={isPending || items.length === 0}
+          className="w-full bg-primary-container text-on-primary-container px-8 py-3 rounded-full font-label-lg text-label-lg sticker-border disabled:opacity-50"
+        >
+          {isPending ? "Placing order…" : "Place order"}
+        </button>
+      </div>
+    </>
   );
 }

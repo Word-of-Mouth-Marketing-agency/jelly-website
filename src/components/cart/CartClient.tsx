@@ -182,7 +182,7 @@ export default function CartClient({ locale }: Props) {
             ))}
           </div>
 
-          <aside className="bg-white rounded-2xl sticker-border p-6 h-fit">
+          <aside className="bg-white rounded-2xl sticker-border p-6 h-fit order-first lg:order-last">
             <h2 className="font-headline-md text-headline-md mb-5">Summary</h2>
             <form
               className="flex gap-2 mb-5"

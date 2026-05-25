@@ -53,7 +53,7 @@ function MarqueeBand({
 
 export default function CrossingMarquees() {
   return (
-    <section className="relative w-full py-32 my-[-60px] h-[300px] flex items-center justify-center">
+    <section className="relative w-full py-32 my-[-60px] h-[300px] flex items-center justify-center overflow-hidden">
       {/* Blue band — rotated -3deg, scrolls right to left */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130vw] flex items-center justify-center -rotate-3 z-10">
         <MarqueeBand background="#0066EE" whiteText />
