@@ -5,6 +5,7 @@ import FeaturedProducts from "@/components/home/FeaturedProducts";
 import NewArrivals from "@/components/home/NewArrivals";
 import BestSellers from "@/components/home/BestSellers";
 import CrossingMarquees from "@/components/home/CrossingMarquees";
+import FeatureBanner from "@/components/home/FeatureBanner";
 import StyledInJelly from "@/components/home/StyledInJelly";
 import Newsletter from "@/components/home/Newsletter";
 import { auth } from "@/auth";
@@ -91,6 +92,7 @@ export default async function HomePage({
         hasSession={!!session}
       />
       <CrossingMarquees />
+      <FeatureBanner locale={locale} />
       <StyledInJelly />
       <Newsletter />
     </>
