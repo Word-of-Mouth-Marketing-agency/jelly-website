@@ -71,6 +71,7 @@ export default function CartClient({ locale }: Props) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ variantId, quantity }),
         });
+        window.dispatchEvent(new Event("jelly-cart-change"));
       } else {
         setLocalCartItem(variantId, quantity);
       }
@@ -86,6 +87,7 @@ export default function CartClient({ locale }: Props) {
     startTransition(async () => {
       if (isLoggedIn) {
         await fetch("/api/cart", { method: "DELETE" });
+        window.dispatchEvent(new Event("jelly-cart-change"));
       } else {
         clearLocalCart();
       }

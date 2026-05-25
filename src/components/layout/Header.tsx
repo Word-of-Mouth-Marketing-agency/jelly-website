@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import AccountMenu from "./AccountMenu";
+import CartCount from "@/components/cart/CartCount";
 import { Globe, Heart, Menu, Search, ShoppingBag, X } from "lucide-react";
 
 const NAV_LINKS = [
@@ -132,9 +133,7 @@ export default function Header() {
                 aria-label="Cart"
               >
                 <ShoppingBag size={24} strokeWidth={2.25} aria-hidden="true" />
-                <span className="absolute -top-1 -right-1 bg-primary-container text-on-primary-container text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">
-                  0
-                </span>
+                <CartCount />
               </Link>
             </div>
           </div>

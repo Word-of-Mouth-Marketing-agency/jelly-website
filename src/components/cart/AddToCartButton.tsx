@@ -38,6 +38,9 @@ export default function AddToCartButton({
         const payload = (await response.json().catch(() => ({}))) as {
           error?: string;
         };
+        if (response.ok) {
+          window.dispatchEvent(new Event("jelly-cart-change"));
+        }
         setMessage(response.ok ? "Added to cart." : payload.error ?? "Try again.");
       });
       return;
