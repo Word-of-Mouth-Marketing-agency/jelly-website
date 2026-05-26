@@ -42,16 +42,15 @@ export default function Header() {
         <div className="max-w-container-max mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Logo + nav links */}
           <div className="flex items-center gap-8 w-full md:w-auto justify-between md:justify-start">
-            <Link href={`/${locale}`} className="relative flex-shrink-0">
-              <div className="relative w-[90px] sm:w-[110px] h-[33px] sm:h-[40px]">
-                <Image
-                  src="/brand/jelly-logo.png"
-                  alt="Jelly logo"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
+            <Link href={`/${locale}`} className="block w-[90px] sm:w-[110px] flex-shrink-0">
+              <Image
+                src="/brand/jelly-logo.png"
+                alt="Jelly logo"
+                width={110}
+                height={40}
+                className="w-full h-auto"
+                priority
+              />
             </Link>
             <div className="hidden md:flex gap-6">
               {NAV_LINKS.map(({ label, slug }) => (
