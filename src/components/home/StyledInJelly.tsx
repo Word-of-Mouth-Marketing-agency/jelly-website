@@ -1,6 +1,6 @@
-import Image from "next/image";
 import StorefrontContainer from "@/components/layout/StorefrontContainer";
 import StaggerReveal from "@/components/animations/StaggerReveal";
+import ImageWithFallback from "@/components/ui/ImageWithFallback";
 
 const IMAGES = [
   "https://lh3.googleusercontent.com/aida/ADBb0uicyrnk7OIRliABbGOIgZDHBdY-Qu-aBxtfe6ux19mSgOi9-u6T0NYZFMriblRPiaMRMuqcq040nl7CUcvY9KlvxDIAfD23UHpTupqFo2iS1bnf5DfKjGgXpbB4RA0ShDV-08cr6M3T8h7cNKXlgFQcvK8RpHyhd9Mg1lb_Z7BoYmc5MX3jyJHDYq-Xdhws9D05IN3PxhtUYCi9W3wS7qjAAdIbLJUqnnCv2V3V5WIWikixpJ60zNut8R8",
@@ -23,12 +23,13 @@ export default function StyledInJelly() {
             className="aspect-square rounded-2xl overflow-hidden sticker-border group"
           >
             <div className="relative w-full h-full">
-              <Image
+              <ImageWithFallback
                 src={src}
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-500"
                 alt=""
                 sizes="(max-width: 768px) 50vw, 25vw"
+                fallback={<div className="w-full h-full bg-surface-container" />}
               />
             </div>
           </div>

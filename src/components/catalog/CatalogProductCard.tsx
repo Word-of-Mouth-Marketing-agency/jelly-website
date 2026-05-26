@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { ProductSummary } from "@/lib/products";
 import WishlistToggle from "./WishlistToggle";
 import AddToCartButton from "@/components/cart/AddToCartButton";
+import ImageWithFallback from "@/components/ui/ImageWithFallback";
 import { Shirt, Star } from "lucide-react";
 
 interface Props {
@@ -35,7 +35,7 @@ export default function CatalogProductCard({
         className="absolute right-6 top-6 z-20 h-10 w-10"
       />
 
-      <Link href={`/${locale}/product/${product.slug}`} className="block">
+      <Link href={`/${locale}/product/${product.slug}`} className="block relative">
         <div className="relative aspect-square mb-4 bg-surface-container rounded-xl overflow-hidden">
           {!product.inStock && (
             <div className="absolute inset-0 bg-white/70 z-10 flex items-center justify-center">
@@ -45,7 +45,7 @@ export default function CatalogProductCard({
             </div>
           )}
           {product.primaryImage ? (
-            <Image
+            <ImageWithFallback
               src={product.primaryImage}
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"

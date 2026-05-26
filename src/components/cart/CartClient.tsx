@@ -6,8 +6,8 @@ import { money } from "@/lib/money";
 import { ShoppingBag } from "lucide-react";
 import StorefrontContainer from "@/components/layout/StorefrontContainer";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import Link from "next/link";
+import ImageWithFallback from "@/components/ui/ImageWithFallback";
 import { useEffect, useState, useTransition } from "react";
 
 type Props = {
@@ -126,7 +126,7 @@ export default function CartClient({ locale }: Props) {
               >
                 <div className="relative aspect-square rounded-xl overflow-hidden bg-surface-container">
                   {item.image ? (
-                    <Image
+                    <ImageWithFallback
                       src={item.image}
                       alt={item.nameEn}
                       fill

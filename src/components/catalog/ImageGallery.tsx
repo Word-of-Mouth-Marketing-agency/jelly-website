@@ -1,8 +1,8 @@
 "use client";
 
 import { Shirt } from "lucide-react";
-import Image from "next/image";
 import { useState } from "react";
+import ImageWithFallback from "@/components/ui/ImageWithFallback";
 
 type GalleryImage = {
   id: string;
@@ -37,7 +37,7 @@ export default function ImageGallery({
   return (
     <div className="flex flex-col gap-4">
       <div className="relative aspect-square bg-surface-container rounded-2xl overflow-hidden sticker-border">
-        <Image
+        <ImageWithFallback
           src={active.url}
           fill
           className="object-cover"
@@ -66,7 +66,7 @@ export default function ImageGallery({
                     : "border-outline-variant hover:border-primary/60"
                 }`}
               >
-                <Image
+                <ImageWithFallback
                   src={image.url}
                   fill
                   className="object-cover"

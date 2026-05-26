@@ -34,13 +34,14 @@ export default function Footer({ locale }: { locale: string }) {
         {/* Brand */}
         <div className="space-y-6">
           <Link href={`/${locale}`} className="relative inline-block">
-            <Image
-              src="/brand/jelly-logo-white.png"
-              alt="Jelly logo"
-              width={140}
-              height={50}
-              className="h-auto w-[110px] sm:w-[140px]"
-            />
+            <div className="relative w-[110px] sm:w-[140px] h-[39px] sm:h-[50px]">
+              <Image
+                src="/brand/jelly-logo-white.png"
+                alt="Jelly logo"
+                fill
+                className="object-contain"
+              />
+            </div>
           </Link>
           <p className="font-body-md text-body-md opacity-80">
             Spreading happiness one step at a time with premium materials and

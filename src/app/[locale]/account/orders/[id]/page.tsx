@@ -5,8 +5,8 @@ import {
   parseShippingAddress,
 } from "@/lib/account";
 import { money } from "@/lib/money";
-import Image from "next/image";
 import Link from "next/link";
+import ImageWithFallback from "@/components/ui/ImageWithFallback";
 import { notFound, redirect } from "next/navigation";
 import type { Metadata } from "next";
 import StorefrontContainer from "@/components/layout/StorefrontContainer";
@@ -78,7 +78,7 @@ export default async function OrderDetailPage({
               >
                 <div className="relative aspect-square rounded-xl overflow-hidden bg-surface-container">
                   {image && (
-                    <Image
+                    <ImageWithFallback
                       src={image}
                       alt={item.product.nameEn}
                       fill

@@ -45,7 +45,7 @@ export default function HomeProductCard({
         )}
         <Link
           href={`/${locale}/product/${product.slug}`}
-          className="block w-full h-full"
+          className="block w-full h-full relative"
         >
           {product.primaryImage && !imgError ? (
             <Image

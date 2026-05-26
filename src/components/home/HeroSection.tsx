@@ -2,14 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { Shirt } from "lucide-react";
 
 export default function HeroSection({ locale }: { locale: string }) {
   const textRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
+  const [heroImgError, setHeroImgError] = useState(false);
 
   useEffect(() => {
     if (reduced) return;
@@ -80,14 +82,21 @@ export default function HeroSection({ locale }: { locale: string }) {
 
       {/* Image column */}
       <div ref={imgRef} className="relative overflow-hidden min-h-[400px] md:h-full">
-        <Image
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGO72FJS633FWIh4tMHr48y9dv50QqIgoLT6Qd5En6M0w2M0_jdcVktekLnsZITAul-AM2Yn09ZWn4GU0mMSFXZ3tc7mykUklM5PNO3HK5Gq2hDUWiXQjYa58hjNqsbzXyVeTyXxtKjFH8M7jHcybGS3eZcAZpdkdnn6mNRU32KwutSvarDc05rJW08WakUPzRriyaFX4j69F41lAAC__BVhSJFRFkPFM-5KOIzNM-9gsbB26MeXiUZnIAsAkEyNAyHTxAYQ_9NWk"
-          fill
-          className="object-cover"
-          alt="A dynamic lifestyle shot of a person sitting on a yellow chair, wearing bright, multi-colored striped socks and casual shoes."
-          sizes="50vw"
-          priority
-        />
+        {heroImgError ? (
+          <div className="w-full h-full flex items-center justify-center bg-surface-container">
+            <Shirt size={72} strokeWidth={1.75} className="text-outline-variant" aria-hidden="true" />
+          </div>
+        ) : (
+          <Image
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGO72FJS633FWIh4tMHr48y9dv50QqIgoLT6Qd5En6M0w2M0_jdcVktekLnsZITAul-AM2Yn09ZWn4GU0mMSFXZ3tc7mykUklM5PNO3HK5Gq2hDUWiXQjYa58hjNqsbzXyVeTyXxtKjFH8M7jHcybGS3eZcAZpdkdnn6mNRU32KwutSvarDc05rJW08WakUPzRriyaFX4j69F41lAAC__BVhSJFRFkPFM-5KOIzNM-9gsbB26MeXiUZnIAsAkEyNAyHTxAYQ_9NWk"
+            fill
+            className="object-cover"
+            alt="A dynamic lifestyle shot of a person sitting on a yellow chair, wearing bright, multi-colored striped socks and casual shoes."
+            sizes="50vw"
+            priority
+            onError={() => setHeroImgError(true)}
+          />
+        )}
       </div>
     </section>
   );

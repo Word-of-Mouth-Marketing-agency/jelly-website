@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Palette } from "lucide-react";
 import StorefrontContainer from "@/components/layout/StorefrontContainer";
 import StaggerReveal from "@/components/animations/StaggerReveal";
+import ImageWithFallback from "@/components/ui/ImageWithFallback";
 
 const CATEGORIES = [
   {
@@ -40,12 +40,13 @@ export default function CategoryRow({ locale = "en" }: { locale?: string }) {
               className="group block"
             >
               <div className="relative rounded-2xl overflow-hidden sticker-border mb-4 aspect-[3/4] md:aspect-video">
-                <Image
+                <ImageWithFallback
                   src={src}
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                   alt={label}
                   sizes="(max-width: 768px) 50vw, 25vw"
+                  fallback={<div className="w-full h-full bg-surface-container" />}
                 />
               </div>
               <h3 className="font-headline-md text-headline-md text-center">
