@@ -124,7 +124,7 @@ export default function Footer({ locale }: { locale: string }) {
               </Link>
             </li>
             <li>
-              <Link href="#" className="text-white/80 hover:text-primary-fixed transition-colors">
+              <Link href={`/${locale}/contact`} className="text-white/80 hover:text-primary-fixed transition-colors">
                 Contact Us
               </Link>
             </li>

@@ -50,3 +50,6 @@ logs/
 *.key
 
 /src/generated/prisma
+
+.impeccable/
+
