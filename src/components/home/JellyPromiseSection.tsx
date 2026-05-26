@@ -28,13 +28,13 @@ export default function JellyPromiseSection({ locale }: Props) {
     <section className="mb-section-gap border-y border-secondary bg-[#E8BC44] py-7 md:py-8">
       <StorefrontContainer as="div">
         <Reveal className="grid items-center gap-7 lg:min-h-[360px] lg:grid-cols-[minmax(0,1.85fr)_minmax(280px,1fr)]">
-          <div className="relative min-h-[240px] overflow-hidden rounded-[2rem] sm:min-h-[300px] lg:min-h-[330px]">
+          <div className="relative min-h-[280px] overflow-hidden rounded-[2rem] sm:min-h-[340px] lg:min-h-[400px]">
             <img
               src="/home/jelly-promise-wave.gif"
               alt=""
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-contain"
             />
-            <div className="relative z-10 flex min-h-[240px] flex-col items-center justify-center px-6 text-center sm:min-h-[300px] lg:min-h-[330px]">
+            <div className="relative z-10 flex min-h-[280px] flex-col items-center justify-center px-6 text-center sm:min-h-[340px] lg:min-h-[400px]">
               <h2 className="max-w-[14ch] font-display-lg text-[clamp(2rem,4.2vw,4.1rem)] font-extrabold leading-[1.02] text-on-surface">
               {content.headline}
               </h2>
